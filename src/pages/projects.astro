@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { featured, projects, earlyWork, site } from '../data/site';
+import { featured, projects, followedProjects, site } from '../data/site';
 ---
 <BaseLayout
   title="作品"
@@ -99,20 +99,20 @@ import { featured, projects, earlyWork, site } from '../data/site';
     </div>
   </section>
 
-  <!-- 早期作品 -->
+  <!-- 我关注的（不是我的作品） -->
   <section class="section section--tight">
     <div class="wrap">
       <div class="section__head" data-reveal>
-        <span class="eyebrow">早期作品</span>
-        <h2>从 2018 年的课设开始</h2>
-        <p class="lead">这些是学习期的项目，代码水平不代表现在，但它们记录了我是怎么一路走过来的。</p>
+        <span class="eyebrow">我关注的</span>
+        <h2>关注过的开源项目</h2>
+        <p class="lead">下面这些 <strong>不是我的作品</strong> —— 是我学习阶段关注过的项目，fork 到自己账号里方便查阅，署名与版权属于原作者。列在这里，也算给「我早期在看什么」一个交代。</p>
       </div>
 
       <div class="list" data-reveal>
-        {earlyWork.map((w) => (
+        {followedProjects.map((w) => (
           <div class="list__item">
             <a class="list__link" href={w.link} target="_blank" rel="noopener">
-              <span class="list__date">{w.year}</span>
+              <span class="list__date">{'@' + w.by}</span>
               <span>
                 <span class="list__title">{w.title}</span>
                 <span class="list__desc">{w.desc}</span>

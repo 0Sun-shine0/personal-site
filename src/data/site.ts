@@ -144,34 +144,35 @@ export const projects = [
 ];
 
 // 早期作品：一行一条
-export const earlyWork = [
+// ---------------------------------------------------------------------------
+// 关注过的开源项目：这些**不是我的作品**，是学习阶段关注过的项目，
+// fork 到自己账号里方便查阅。署名与版权属于原作者，
+// 所以链接一律指向上游仓库，不指向我的 fork。
+// ---------------------------------------------------------------------------
+export const followedProjects = [
   {
-    year: '2024',
-    title: 'YiTiTong · 艺体通抢课脚本',
-    desc: '给还在学校的同学写的抢课脚本，1 star —— 收过最好笑的 star。',
-    stack: ['脚本'],
-    link: 'https://github.com/0Sun-shine0/YiTiTong',
+    title: 'OnlineBooks · Java 图书管理系统',
+    by: 'GongShengyue',
+    desc: 'JSP + Servlet + Tomcat 9 + MySQL 的图书管理课程项目：开借书服务、登记图书、登记借出。上游 543 stars。',
+    link: 'https://github.com/GongShengyue/OnlineBooks',
   },
   {
-    year: '2022',
-    title: 'hd_django_sever · 小程序后端基础架构',
-    desc: 'Django 做的后端脚手架：内置用户体系、后台管理、API 文档、统一响应体、异常集中处理、JWT、日志与 Sentry。MIT，1 star。',
-    stack: ['Django', 'Python'],
-    link: 'https://github.com/0Sun-shine0/hd_django_sever',
-  },
-  {
-    year: '2023',
-    title: 'OnlineBooks · 图书管理系统',
-    desc: 'JSP + Servlet + Tomcat 9 + MySQL 的课程项目：开借书服务、登记图书、记录借出。',
-    stack: ['Java', 'JSP', 'MySQL'],
-    link: 'https://github.com/0Sun-shine0/OnlineBooks',
-  },
-  {
-    year: '2018',
     title: 'LibraryManager · 图书馆管理系统',
-    desc: 'Java AWT（不是 Swing）+ Access 数据库，还得用 32 位 JDK 才能跑。我最早的仓库，1 star。',
-    stack: ['Java', 'Access'],
-    link: 'https://github.com/0Sun-shine0/LibraryManager',
+    by: 'uboger',
+    desc: 'Java AWT（不是 Swing）+ Access 数据库，需要 32 位 JDK 才能跑。2016 年创建的项目，上游 349 stars。',
+    link: 'https://github.com/uboger/LibraryManager',
+  },
+  {
+    title: 'hd_django_sever · 小程序后端基础架构',
+    by: 'Bruce-7',
+    desc: 'Django 后端脚手架：用户体系、后台管理、API 文档、统一响应体、异常集中处理、JWT、日志与 Sentry。MIT 许可。',
+    link: 'https://github.com/Bruce-7/hd_django_sever',
+  },
+  {
+    title: 'YiTiTong · 艺体通抢课脚本',
+    by: 'SakuraPuare',
+    desc: '给 HBUAS 的同学写的艺体通抢课脚本，一个很小但完整的 Python 自动化脚本。',
+    link: 'https://github.com/SakuraPuare/YiTiTong',
   },
 ];
 
