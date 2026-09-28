@@ -1,0 +1,75 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  date: Date | string;
+  tags?: string[];
+  minutes?: number;
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, date, tags = [], minutes, headings = [] } = Astro.props;
+const d = new Date(date);
+const iso = d.toISOString().slice(0, 10);
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+<BaseLayout title={title} description={description} ogType="article" progress>
+  <div class="wrap" style="padding-top:clamp(6.6rem,14vw,8.6rem)">
+    <nav class="crumb" aria-label="面包屑">
+      <a href="/">首页</a><span aria-hidden="true">/</span>
+      <a href="/blog">文章</a><span aria-hidden="true">/</span>
+      <span class="faint">{title}</span>
+    </nav>
+
+    <div class="two-col">
+      <article class="article">
+        <header class="stack gap-sm" style="margin-bottom:2.2rem">
+          <h1 style="font-size:clamp(1.85rem,4.2vw,2.85rem)">{title}</h1>
+          {description ? <p class="lead" style="margin:0">{description}</p> : null}
+          <div class="meta-row">
+            <time datetime={iso} class="mono">{iso}</time>
+            {minutes ? <span class="mono inline-meta"><Icon name="clock" size={14} />{minutes} 分钟</span> : null}
+            {tags.map((t) => <span class="tag">{t}</span>)}
+          </div>
+        </header>
+
+        <slot />
+
+        <hr />
+        <div class="callout">
+          <span aria-hidden="true"><Icon name="spark" size={18} /></span>
+          <div>
+            <b>这篇文章对你有用吗？</b><br />
+            我在<a href="/blog">博客</a>里持续记录后端实战踩坑。有不同意见或者想聊的，写信到
+            <a href={`mailto:${site.email}`}>{site.email}</a>。
+          </div>
+        </div>
+      </article>
+
+      <aside class="side">
+        {toc.length > 1 ? (
+          <div class="card">
+            <span class="eyebrow">本页目录</span>
+            <nav class="toc" style="margin-top:.9rem" aria-label="文章目录">
+              {toc.map((h) => (
+                <a href={`#${h.slug}`} style={h.depth === 3 ? 'padding-left:.9rem;opacity:.82' : ''}>{h.text}</a>
+              ))}
+            </nav>
+          </div>
+        ) : null}
+
+        <div class="card">
+          <span class="eyebrow">联系</span>
+          <p style="margin:.7rem 0 1rem">看到错别字、想讨论实现细节，都欢迎直接来信。</p>
+          <button class="btn btn--sm" type="button" data-copy={site.email}>
+            <Icon name="copy" size={14} />复制邮箱
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

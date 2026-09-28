@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { fmtDate } from '../../data/site';
+
+const mods = import.meta.glob('../../posts/*.md', { eager: true }) as Record<string, any>;
+const posts = Object.entries(mods)
+  .map(([path, m]) => {
+    const fm = m.frontmatter ?? {};
+    return {
+      slug: path.split('/').pop()!.replace(/\.md$/, ''),
+      title: fm.title ?? '',
+      description: fm.description ?? '',
+      date: fm.date ?? '',
+      tags: fm.tags ?? [],
+      minutes: fm.minutes,
+    };
+  })
+  .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+
+const allTags = [...new Set(posts.flatMap((p) => p.tags))];
+---
+<BaseLayout
+  title="文章"
+  description="后端实战笔记：性能排查、数据库优化、值班流程，都是能直接抄的步骤。"
+>
+  <section class="page-head">
+    <div class="wrap stack gap-sm">
+      <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">文章</span></nav>
+      <span class="eyebrow">技术笔记</span>
+      <h1>{posts.length} 篇笔记，全部来自真实踩坑</h1>
+      <p class="lead">
+        不写「从零实现」系列，只写我实际遇到的问题、怎么定位的、最后怎么解决的。
+        每篇都尽量给出可以直接照抄的命令和配置。
+      </p>
+      <div class="meta-row" style="margin-top:.6rem">
+        {allTags.map((t) => <span class="tag">{t}</span>)}
+        <a class="mono" href="/rss.xml" style="margin-left:.4rem"><Icon name="rss" size={14} /> RSS 订阅</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="list" data-reveal>
+        {posts.map((post) => (
+          <div class="list__item">
+            <a class="list__link" href={`/blog/${post.slug}/`}>
+              <span class="list__date">{fmtDate(post.date)}</span>
+              <span>
+                <span class="list__title">{post.title}</span>
+                <span class="list__desc">{post.description}</span>
+              </span>
+              <span class="list__arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
+            </a>
+          </div>
+        ))}
+      </div>
+      {posts.length === 0 ? <p class="muted">还没有文章，去 <code>src/posts/</code> 新建一个 .md 文件就会出现在这里。</p> : null}
+    </div>
+  </section>
+</BaseLayout>

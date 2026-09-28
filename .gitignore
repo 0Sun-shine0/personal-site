@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+.npm-cache/
+.install.out.log
+.install.err.log
+.DS_Store

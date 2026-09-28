@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+const updated = '2026-09-20';
+---
+<BaseLayout
+  title="现在"
+  description="林默这个月在忙什么：正在做的项目、在读的书、以及这一年想做到的事。"
+>
+  <section class="page-head">
+    <div class="wrap stack gap-sm">
+      <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">现在</span></nav>
+      <span class="eyebrow">现在</span>
+      <h1>这个月在忙什么</h1>
+      <p class="lead">
+        这一页记录「此刻」的状态，比简历真实，也比朋友圈稳定。
+        最后更新：<span class="mono">{updated}</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap two-col">
+      <div class="article">
+        <h2>工作</h2>
+        <ul>
+          <li>把对账任务改成按账期分片并行，目前全量 22 分钟跑完，目标是压到 10 分钟以内。</li>
+          <li>在团队里推行「上线必带回滚说明」，已经坚持 4 个月，最近两次事故都在 10 分钟内止损。</li>
+          <li>帮组里两个同事从「只会加索引」过渡到会看执行计划和缓冲区命中率。</li>
+        </ul>
+
+        <h2>学习</h2>
+        <ul>
+          <li>读 Rust 的 async 运行时（tokio）源码，进度大概 40%，纯兴趣。</li>
+          <li>重看《Designing Data-Intensive Applications》的复制与一致性章节，这次带着线上问题读，收获完全不同。</li>
+        </ul>
+
+        <h2>写作</h2>
+        <ul>
+          <li>这个博客保持每月 12 篇，选题来自值班记录和同事提问。</li>
+          <li>在整理一份内部「事故复盘模板」，跑顺之后会脱敏发到这里。</li>
+        </ul>
+
+        <h2>今年想做到</h2>
+        <ul>
+          <li>让负责的服务做到「大促零人工介入」。</li>
+          <li>把 P99 延迟预算写进代码评审清单，而不是等事故发生再补。</li>
+          <li>把这套博客坚持写满两年。</li>
+        </ul>
+
+        <div class="callout">
+          <span aria-hidden="true"><Icon name="clock" size={18} /></span>
+          <div>
+            <b>这一页怎么用</b><br />
+            如果你在考虑和我合作或者招我，这页能告诉你我最近真正在花时间的地方；
+            比简历上的技能列表靠谱一些。
+          </div>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="card">
+          <span class="eyebrow">状态</span>
+          <p style="margin:.7rem 0 1rem">{site.status}，{site.location}。</p>
+          <div class="btn-row">
+            <a class="btn btn--sm" href="/about">更多关于我 <Icon name="arrow" cls="btn__icon" /></a>
+          </div>
+        </div>
+        <div class="card">
+          <span class="eyebrow">最近在读</span>
+          <div class="stack gap-sm" style="margin-top:.8rem">
+            <span class="mono faint">Designing Data-Intensive Applications</span>
+            <span class="mono faint">Systems Performance (Brendan Gregg)</span>
+            <span class="mono faint">Database Internals</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

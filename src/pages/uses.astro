@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const groups = [
+  {
+    title: '硬件',
+    rows: [
+      ['笔记本', '<b>MacBook Pro 14" M4 Pro</b>，32G 内存。公司配的，够用。'],
+      ['显示器', 'Dell U2723QE，4K 27 寸，竖屏放日志。'],
+      ['键盘', 'HHKB Pro Hybrid Type-S。安静版，办公室里不会被同事打。'],
+    ],
+  },
+  {
+    title: '开发环境',
+    rows: [
+      ['编辑器', '<b>Neovim</b> 写小改动和读源码，<b>GoLand</b> 做大重构  两边都在用，不站队。'],
+      ['终端', 'tmux + starship，主题尽量素。'],
+      ['Shell', 'Windows 上 PowerShell 7，服务器上 zsh。'],
+      ['字体', 'JetBrains Mono + 等距更纱黑体。'],
+    ],
+  },
+  {
+    title: '技术栈',
+    rows: [
+      ['主力语言', '<b>Go</b>。脚本用 Python，SQL 每天都在写。'],
+      ['数据库', '<b>PostgreSQL</b> 为主，缓存用 Redis，宽表放 ClickHouse。'],
+      ['消息', 'Kafka，偶尔用 NATS 做内部轻量通信。'],
+      ['可观测', 'Prometheus + Grafana + OpenTelemetry，日志集中到 Loki。'],
+      ['部署', 'Kubernetes（会用不会调，见 <a href="/about">关于</a> 页的自白）。'],
+    ],
+  },
+  {
+    title: '日常工具',
+    rows: [
+      ['笔记', 'Obsidian，本地 Markdown，同步用 Git。'],
+      ['数据库 GUI', 'DBeaver 查数据，psql 干正事。'],
+      ['压测', 'wrk2 和 k6，看延迟分布比看 QPS 有意思。'],
+      ['阅读', 'Kindle + 纸质书混着来。'],
+    ],
+  },
+];
+---
+<BaseLayout
+  title="装备"
+  description="我用的硬件、编辑器配置和日常工具清单，后端工程师版本。"
+>
+  <section class="page-head">
+    <div class="wrap stack gap-sm">
+      <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">装备</span></nav>
+      <span class="eyebrow">装备</span>
+      <h1>我在用什么</h1>
+      <p class="lead">
+        同类人大概都爱看这类清单。这里只写我用了半年以上的东西，
+        短命尝试过的工具就不列了。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap stack gap-lg">
+      {groups.map((g) => (
+        <div class="card" data-reveal>
+          <div class="card__top"><span class="card__idx">{g.title}</span></div>
+          <dl class="uses__list">
+            {g.rows.map(([k, v]) => (
+              <div class="uses__row">
+                <dt>{k}</dt>
+                <dd set:html={v} />
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+
+      <div class="callout" data-reveal>
+        <span aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+            <path d="M12 3.4l1.9 5.2 5.2 1.9-5.2 1.9L12 17.6l-1.9-5.2L4.9 10.5l5.2-1.9z" />
+          </svg>
+        </span>
+        <div>
+          <b>工具只是工具</b><br />
+          这套清单我换过很多次，唯一没换的是「先量再改」的习惯。
+          如果你也在折腾自己的环境，别花超过一天  剩下的时间用来写代码。
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

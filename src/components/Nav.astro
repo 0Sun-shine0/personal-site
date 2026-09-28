@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+import { navItems, site } from '../data/site';
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isCurrent = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+---
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="/" aria-label={site.name + ' 首页'}>
+      <span class="brand__mark">{site.initials}</span>
+      <span class="brand__text">{site.name} <span class="faint"></span> {site.role}</span>
+    </a>
+
+    <nav class="nav__links" aria-label="主导航">
+      {navItems.map((item) => (
+        <a class="nav__link" href={item.href} data-nav={item.label}
+           aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn" type="button" data-theme-toggle
+              aria-label="切换深浅色模式" title="切换深浅色模式">
+        <Icon name="sun" size={17} cls="ico-sun" />
+        <Icon name="moon" size={17} cls="ico-moon" />
+      </button>
+      <button class="icon-btn nav__burger" type="button" data-burger
+              aria-label="打开菜单" aria-expanded="false" aria-controls="nav-drawer">
+        <Icon name="menu" size={17} />
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__drawer" id="nav-drawer">
+    <div class="wrap">
+      <ul>
+        <li><a href="/" aria-current={isCurrent('/') ? 'page' : undefined}>首页</a></li>
+        {navItems.map((item) => (
+          <li><a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: string;
+  progress?: boolean;
+  noindex?: boolean;
+}
+
+const { title, description, ogType = 'website', progress = false, noindex = false } = Astro.props;
+const base = Astro.site ?? new URL('https://linmo.dev');
+const pageTitle = title ? `${title}  ${site.name}` : `${site.name}  ${site.role}  ${site.tagline}`;
+const desc = description ?? site.intro;
+const canonical = new URL(Astro.url.pathname, base).href;
+const ogImage = new URL('/og-cover.svg', base).href;
+---
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : null}
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#08080c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title={`${site.name} 的文章`} href="/rss.xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- 首屏前定主题，避免闪白 -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var light = window.matchMedia('(prefers-color-scheme: light)').matches;
+          document.documentElement.setAttribute('data-theme', saved || (light ? 'light' : 'dark'));
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+
+  <body {...(progress ? { 'data-progress': '' } : {})}>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <Nav />
+    <main id="main"><slot /></main>
+    <Footer />
+    <script>
+      import '../scripts/main.js';
+    </script>
+  </body>
+</html>

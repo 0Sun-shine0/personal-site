@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+const timeline = [
+  { when: '2024  现在', what: '支付公司  后端 Tech Lead', desc: '带 5 人小组做清结算，把对账和费率服务从「能跑」推到「敢在大促跑」。' },
+  { when: '2021  2024', what: '量化交易公司  高级后端', desc: '撮合引擎与行情分发，第一次把 P99 从两位数毫秒压到个位数。' },
+  { when: '2018  2021', what: '电商公司  后端工程师', desc: '订单与库存，学会了在业务压力下做取舍，也第一次被线上事故教育。' },
+  { when: '2018 之前', what: '从 PHP 商城和一堆脚本开始', desc: '自学进这行，最早写的是给亲戚店铺用的进销存。' },
+];
+
+const nowItems = [
+  '把一套跑了 5 年的对账任务拆成可并行的分片，目标是凌晨 2 点前一定跑完。',
+  '在团队里推「变更即记录」：每次上线留下可回滚的说明，事故复盘时能少吵一半架。',
+  '读 Rust 的 async 运行时实现，纯粹好奇  还没打算在生产里用。',
+];
+---
+<BaseLayout
+  title="关于"
+  description="林默，后端工程师，8 年经验，做交易、清算、对账系统。这里写我的经历、我在关心什么，以及我不会什么。"
+>
+  <section class="page-head">
+    <div class="wrap stack gap-sm">
+      <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">关于</span></nav>
+      <span class="eyebrow">关于</span>
+      <h1>我是林默，后端工程师</h1>
+      <p class="lead">{site.intro}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap two-col">
+      <div class="article">
+        <div class="about-head">
+          <div class="avatar" aria-hidden="true">{site.initials}</div>
+          <div class="stack gap-xs">
+            <span class="mono faint">{site.location}  {site.status}</span>
+            <p style="margin:0">
+              做后端 8 年，主要和 Go、PostgreSQL、Kafka 打交道。
+              长期关注一件事：让系统在流量最大的那天也保持可预测。
+            </p>
+          </div>
+        </div>
+
+        <h2>我怎么走到这个方向的</h2>
+        <p>
+          最早我是给自己家店的进销存写脚本，那时候只知道「能跑就行」。
+          后来一次大促，订单服务在流量峰值上把数据库连接打满，我盯着监控图看了四个小时 
+          那是我第一次意识到，<strong>性能问题很少是「某个函数慢」，更多是资源在错误的地方排队</strong>。
+        </p>
+        <p>
+          从那以后我开始系统学 profiling、GC 行为和数据库执行计划。
+          转到交易系统之后，这套东西变成了日常：延迟预算是硬约束，慢 10 毫秒就是真金白银。
+        </p>
+
+        <h2>我现在关心的问题</h2>
+        <ul>
+          {nowItems.map((t) => <li>{t}</li>)}
+        </ul>
+
+        <h2>我不会什么</h2>
+        <p>
+          前端框架我写得很糟，React 只会到「能改组件」的程度；
+          Kubernetes 我是「会用不会调」，出网络问题基本靠同事；
+          Rust 还在读代码阶段，没写过能上生产的程序。
+          写出来是为了让你知道，找我聊后端比聊前端有用得多。
+        </p>
+
+        <div class="callout">
+          <span aria-hidden="true"><Icon name="spark" size={18} /></span>
+          <div>
+            <b>我的工作方式</b><br />
+            先量再改、改动尽量小、能回滚优先。遇到分歧就用数据压测一次，谁的方案数字好就用谁的。
+          </div>
+        </div>
+
+        <h2>这个站在写什么</h2>
+        <p>
+          主要写三类东西：踩过的坑和排查过程、项目复盘、以及我对工程实践的看法。
+          如果你也在维护一套年久失修的系统，希望这里的笔记能帮你省几个通宵。
+        </p>
+      </div>
+
+      <aside class="side">
+        <div class="card">
+          <span class="eyebrow">经历</span>
+          <div class="timeline" style="margin-top:1.2rem">
+            {timeline.map((t) => (
+              <div class="timeline__item">
+                <span class="timeline__when">{t.when}</span>
+                <div class="timeline__what">{t.what}</div>
+                <div class="timeline__desc">{t.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="eyebrow">联系我</span>
+          <p style="margin:.7rem 0 1rem">最直接的方式是邮件，我基本当天回。</p>
+          <div class="stack gap-sm">
+            <button class="btn btn--sm" type="button" data-copy={site.email}>
+              <Icon name="copy" size={14} />{site.email}
+            </button>
+            <a class="btn btn--sm" href={site.github} target="_blank" rel="me noopener">
+              <Icon name="github" size={14} />GitHub
+            </a>
+            <a class="btn btn--sm" href={site.x} target="_blank" rel="me noopener">
+              <Icon name="x" size={14} />X / Twitter
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

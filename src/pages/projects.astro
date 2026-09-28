@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { projects, site } from '../data/site';
+---
+<BaseLayout
+  title="作品"
+  description="后端项目案例：撮合引擎重构、对账系统提速、内部工具，每条都写了问题、方案、结果和反思。"
+>
+  <section class="page-head">
+    <div class="wrap stack gap-sm">
+      <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">作品</span></nav>
+      <span class="eyebrow">作品</span>
+      <h1>我做过什么，以及踩了什么坑</h1>
+      <p class="lead">
+        每条都按同一个结构写：<b class="muted">问题</b>  <b class="muted">方案</b>  <b class="muted">结果</b>  <b class="muted">反思</b>。
+        反思那一段最有用，因为它是下次不会再犯的部分。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap stack gap-lg">
+      {projects.map((p) => (
+        <article class="card" id={`p${p.idx}`} data-reveal>
+          <div class="card__top">
+            <span class="card__idx">{p.idx}  {p.tags.join(' / ')}</span>
+            <span class="mono faint">{p.metrics[0]}</span>
+          </div>
+
+          <h2 style="font-size:clamp(1.35rem,2.7vw,1.95rem);margin-bottom:.6rem">{p.title}</h2>
+          <p>{p.summary}</p>
+
+          <div class="case" style="margin-top:1.3rem">
+            <div class="case__row">
+              <span class="case__key">问题</span>
+              <span class="case__val">{p.problem}</span>
+            </div>
+            <div class="case__row">
+              <span class="case__key">方案</span>
+              <span class="case__val">{p.approach}</span>
+            </div>
+            <div class="case__row">
+              <span class="case__key">结果</span>
+              <span class="case__val" set:html={p.result} />
+            </div>
+            <div class="case__row">
+              <span class="case__key">反思</span>
+              <span class="case__val">{p.lesson}</span>
+            </div>
+          </div>
+
+          <div class="case__metric">
+            {p.metrics.map((m) => <span class="tag tag--brand">{m}</span>)}
+            {p.tags.map((t) => <span class="tag">{t}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="cta" data-reveal>
+        <h2>想聊细节？</h2>
+        <p>这些项目的取舍过程比结果更有意思，欢迎写信问我当时怎么想的。</p>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn--primary" href={`mailto:${site.email}`}><Icon name="mail" size={16} />写信给我</a>
+          <a class="btn" href="/blog">看技术笔记 <Icon name="arrow" cls="btn__icon" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

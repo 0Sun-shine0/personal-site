@@ -1,0 +1,18 @@
+{
+  "name": "personal-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "林默的个人网站  Astro 静态站",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "prebuild": "node scripts/fix-env-plugin.mjs",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^7.3.5"
+  }
+}

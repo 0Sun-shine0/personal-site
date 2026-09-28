@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+<BaseLayout title="页面不存在" description="这个地址没有对应内容。" noindex>
+  <section class="page-head">
+    <div class="wrap stack gap-md" style="max-width:62ch">
+      <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">404</span></nav>
+      <span class="eyebrow">404</span>
+      <h1>这个页面不存在</h1>
+      <p class="lead">链接可能过期了，或者我把文章地址改过。下面三个地方通常能找到你要的东西。</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/">回首页 <Icon name="arrow" cls="btn__icon" /></a>
+        <a class="btn" href="/blog">看文章</a>
+        <a class="btn" href="/projects">看作品</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
