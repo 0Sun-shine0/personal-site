@@ -48,10 +48,26 @@ npm run preview    # 本地预览 dist/（默认 http://localhost:4321）
 - **构建命令**：`npm run build`
 - **输出目录**：`dist`
 
-## 上线前必须改的三处
+## 联系方式（已在站内）
 
-1. **邮箱**：`src/data/site.ts` 里的 `email`（现在是占位符 `hello@example.com`）。
-2. **站点地址**：`astro.config.mjs` 的 `site`（现在是 `https://0sun-shine0.github.io`）。
+| 渠道 | 值 | 出现在 |
+| --- | --- | --- |
+| 邮箱 | maaikk@126.com | 页脚、关于页、文章侧栏、首页 CTA |
+| 微信 | M2XWYMM | 页脚、关于页、文章侧栏、首页 CTA |
+| QQ | 920422927 | 页脚、关于页、文章侧栏、首页 CTA |
+| GitHub | [@0Sun-shine0](https://github.com/0Sun-shine0) | 页脚、关于页、首页、作品页 |
+| 城市 | 湖北武汉 | 页脚、关于页、首页状态、现在页 |
+
+这些都在 `src/data/site.ts` 里：`location` / `email` / `qq` / `wechat` / `github`，
+另外 `contacts` 数组统一驱动所有复制按钮  **改一处，全站同步**。
+（联系方式是公开信息，会出现在页面源码里，换号记得改这里。）
+
+> 注意：站点已去掉 X / Twitter 的社交链接。`BaseLayout.astro` 里保留的
+> `twitter:card` 是 OG 分享卡的 meta 协议名，不是社交账号，需要保留。
+
+## 上线前必须改的
+
+1. **站点地址**：`astro.config.mjs` 的 `site`（现在是 `https://0sun-shine0.github.io`）。
    它决定 sitemap / RSS / canonical 里的绝对链接。
    - 用 GitHub Pages 用户主页：仓库名必须是 `0Sun-shine0.github.io`，现有值即可；
    - 用**项目页**（仓库名是别的）：地址变成 `https://0sun-shine0.github.io/<仓库名>/`，

@@ -64,10 +64,18 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
         <div class="card">
           <span class="eyebrow">联系</span>
-          <p style="margin:.7rem 0 1rem">看到错别字、想讨论实现细节，都欢迎直接来信或在 GitHub 上找我。</p>
-          <button class="btn btn--sm" type="button" data-copy={site.email}>
-            <Icon name="copy" size={14} />复制邮箱
-          </button>
+          <p style="margin:.7rem 0 1rem">看到错别字、想讨论实现细节，都欢迎直接找我  点一下就是复制。</p>
+          <div class="stack gap-sm">
+            <button class="btn btn--sm" type="button" data-copy={site.email}>
+              <Icon name="mail" size={14} />{site.email}
+            </button>
+            <button class="btn btn--sm" type="button" data-copy={site.wechat}>
+              <Icon name="wechat" size={14} />微信 {site.wechat}
+            </button>
+            <button class="btn btn--sm" type="button" data-copy={site.qq}>
+              <Icon name="chat" size={14} />QQ {site.qq}
+            </button>
+          </div>
         </div>
       </aside>
     </div>

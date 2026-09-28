@@ -29,7 +29,7 @@ const total = featured.length + projects.length;
     <div class="wrap hero__grid">
       <div class="hero__copy">
         <span class="pill">
-          <span class="dot" aria-hidden="true"></span>{site.status}
+          <span class="dot" aria-hidden="true"></span>{site.location}  {site.status}
         </span>
 
         <h1>
@@ -179,7 +179,9 @@ const total = featured.length + projects.length;
         <p>权限怎么分级、什么时候该合并确认、打包怎么少踩坑  这些我都踩过一遍，欢迎来交换经验。</p>
         <div class="btn-row" style="justify-content:center">
           <a class="btn btn--primary" href={site.github} target="_blank" rel="me noopener"><Icon name="github" size={16} />去 GitHub 找我</a>
-          <a class="btn" href={`mailto:${site.email}`}><Icon name="mail" size={15} />写邮件</a>
+          <a class="btn" href={`mailto:${site.email}`}><Icon name="mail" size={15} />写信：{site.email}</a>
+          <button class="btn" type="button" data-copy={site.wechat}><Icon name="wechat" size={15} />微信 {site.wechat}</button>
+          <button class="btn" type="button" data-copy={site.qq}><Icon name="chat" size={15} />QQ {site.qq}</button>
         </div>
       </div>
     </div>

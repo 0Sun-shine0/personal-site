@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { site } from '../data/site';
+import { site, contacts } from '../data/site';
 
 const timeline = [
   { when: '2026-09', what: '小爪助手 v2.4（进行中）', desc: '常驻桌面的小助手：离线四件套 + 可选 AI。14 天 81 次提交推到 v2.4.0，现在在解决「让完全不折腾电脑的人也能装完就用」。' },
@@ -38,7 +38,7 @@ const concerns = [
         <div class="about-head">
           <div class="avatar" aria-hidden="true">{site.initials}</div>
           <div class="stack gap-xs">
-            <span class="mono faint">{site.status}</span>
+            <span class="mono faint">{site.location}  {site.status}</span>
             <p style="margin:0">
               主要用 <b>Python</b> 和 <b>TypeScript</b>。做过桌面端（PySide6 / Qt Quick、Electron + React）、
               Agent 工具链、文生视频，也写过 Django 后端和 Java 课设。
@@ -109,15 +109,21 @@ const concerns = [
 
         <div class="card">
           <span class="eyebrow">联系我</span>
-          <p style="margin:.7rem 0 1rem">GitHub 上一般能找到我，Issue 和邮件都会看。</p>
+          <p style="margin:.7rem 0 1rem">
+            邮箱、微信、QQ 都可以，我基本当天回；GitHub 上的 Issue 也会看。
+            点一下就是复制。
+          </p>
           <div class="stack gap-sm">
             <a class="btn btn--sm" href={site.github} target="_blank" rel="me noopener">
               <Icon name="github" size={14} />@0Sun-shine0
             </a>
-            <button class="btn btn--sm" type="button" data-copy={site.email}>
-              <Icon name="copy" size={14} />{site.email}
-            </button>
+            {contacts.map((c) => (
+              <button class="btn btn--sm" type="button" data-copy={c.value} title={`点击复制${c.label}`}>
+                <Icon name={c.icon} size={14} />{c.label}：{c.value}
+              </button>
+            ))}
           </div>
+          <p class="mono faint" style="margin:1rem 0 0">常驻 {site.location}</p>
         </div>
       </aside>
     </div>

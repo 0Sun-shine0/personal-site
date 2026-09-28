@@ -1,6 +1,6 @@
 // ===========================================================================
 // 站点配置  内容都从这里来，改这一个文件就能改整站
-// TODO 上线前请替换：email（下面那行是占位符）、以及 astro.config.mjs 里的 site
+// 注意：下面的联系方式是公开信息（会出现在页面源码里），换号记得同步改这里
 // ===========================================================================
 
 export const site = {
@@ -13,10 +13,20 @@ export const site = {
   headlineAccent: '让模型真的能把活干完。',
   intro:
     '白天写业务系统，晚上堆自己的小工具。做过 AI 操作电脑、文生视频、Agent 图形界面，最近在做一个「装完就能用」的桌面助手  待办、番茄钟、提醒、便签完全离线，AI 是可选加成而不是门槛。',
-  email: 'hello@example.com', //  TODO 换成你的真实邮箱
+  location: '湖北武汉',
+  email: 'maaikk@126.com',
+  qq: '920422927',
+  wechat: 'M2XWYMM',
   github: 'https://github.com/0Sun-shine0',
   status: '在用 14 天把小爪助手推到 v2.4.0',
 };
+
+// 联系方式：页面上的复制按钮和「联系我」卡片都用这一份，改一处即可
+export const contacts = [
+  { key: 'email', label: '邮箱', value: 'maaikk@126.com', icon: 'mail' },
+  { key: 'wechat', label: '微信', value: 'M2XWYMM', icon: 'wechat' },
+  { key: 'qq', label: 'QQ', value: '920422927', icon: 'chat' },
+];
 
 export const navItems = [
   { href: '/projects', label: '作品' },
