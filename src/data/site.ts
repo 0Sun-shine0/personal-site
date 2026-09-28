@@ -44,8 +44,8 @@ export const stats = [
 // 首页跑马灯
 export const techStack = [
   'Python', 'PySide6', 'Qt Quick / QML', 'PyInstaller', 'Electron', 'React',
-  'TypeScript', 'Vite', 'DeepSeek API', 'MCP', 'PyAutoGUI', 'UI Automation',
-  'PowerShell', 'R', 'Django', 'Java',
+  'TypeScript', 'Vite', 'DeepSeek API', 'MCP', 'PyAutoGUI', 'UI Automation', 'OpenCV',
+  'MoviePy', 'PowerShell', 'R', 'Django', 'Java',
 ];
 
 // 主推作品：完整四段式
@@ -67,12 +67,29 @@ export const featured = [
     tags: ['Python', 'PySide6', 'Qt Quick / QML', 'PyInstaller'],
     link: 'https://github.com/0Sun-shine0/PawPet',
   },
+  {
+    idx: '02',
+    title: 'T2Video-DCOT · 把一首诗词变成一段视频',
+    summary:
+      '给一首中国古典诗词生成一段连贯的视频：语言模型先把诗拆成分镜单元，再逐镜生成图像与视频片段，每一镜生成后做一致性验证，没通过的按失败原因修正后重生成，最后拼接成片。这个项目 2024 年动手写，当时没用版本控制；2026-02 为了重构先提交了一份备份，2026-09 才拆成模块。',
+    problem:
+      '文生视频有三个地方最容易露馅：一句诗里挤了好几个意象，模型只能画出个大概；镜头之间主体丢失，看着像换了部片子；生成完没人检查，画面糊了、几乎静止、亮度突变，程序也照样算成功。',
+    approach:
+      '用「动态思维链」把诗拆成可分镜的场景单元，关键是分镜数不固定：意象少于 2 个的相邻句合并（单独成镜画面信息量太低），超过 4 个的拆两镜。每一镜的提示词都携带前一镜已确定的画面状态，形成承接；每一镜生成后做跨媒体一致性验证，未通过就按失败原因生成修正要求再重生成，形成带反馈的链条。',
+    result:
+      '原本是一个 <b>1169 行的单文件</b>，方法逻辑、界面、接口调用全混在一起；而且文件是 UTF-16 编码，<b>别人 clone 下来根本跑不起来</b>。重构后拆成 <b>8 个模块</b>（分镜 / 提示词 / 视觉接口 / 拼接 / 验证 / 界面 / 账户 / 参数），补了 <b>230 个测试函数</b>、306 条断言，一致性验证做成 <b>6 项可计算指标</b>，并修掉 6 个影响实际功能的缺陷。',
+    lesson:
+      '验证指标上做了两处刻意的放弃：细节强度不用全局拉普拉斯方差 —— 水墨写意本来就大量留白，全局方差会把正常作品误判为模糊，改成统计边缘能量最强的分块；亮度连续性不用直方图相关系数 —— 低方差图像上那个系数会病态归零。最该修的一个缺陷是资源清理：它会递归遍历系统临时目录、删掉所有超过 24 小时的文件，而且在启动时自动跑。',
+    metrics: ['1169 行 → 8 个模块', '230 个测试函数', '6 项一致性指标', '修掉 6 个缺陷'],
+    tags: ['Python', 'DeepSeek API', '火山视觉 API', 'OpenCV'],
+    link: 'https://github.com/0Sun-shine0/T2Video-DCOT',
+  },
 ];
 
 // 其他作品：轻量卡片
 export const projects = [
   {
-    idx: '02',
+    idx: '03',
     title: 'AI 智能桌面操作员',
     subtitle: '用自然语言指挥电脑：DeepSeek 拆解任务，CNN 看屏幕，然后真的去点鼠标键盘。',
     points: [
@@ -90,7 +107,7 @@ export const projects = [
     link: 'https://github.com/0Sun-shine0/AI-computer-desk-operator',
   },
   {
-    idx: '03',
+    idx: '04',
     title: 'DeepSeek Reasonix GUI',
     subtitle: '给 DeepSeek 原生的编程 Agent（Reasonix CLI）套一个 Electron 桌面图形界面。',
     points: [
@@ -106,24 +123,6 @@ export const projects = [
     note:
       '做完的结论有点反直觉：把 CLI 的能力清单在 GUI 里复刻一遍，性价比并不高。Agent 真正被需要的位置是用户已有的工作流里，而不是多开一个窗口。',
     link: 'https://github.com/0Sun-shine0/DeepSeek_Reasonix_GUI',
-  },
-  {
-    idx: '04',
-    title: 'T2Video-DCOT · 文生视频',
-    subtitle: '基于动态思维链（DCOT）的文生视频：文本 → 三层解析 → 图像序列 → 视频。',
-    points: [
-      '意象层 / 物理层 / 风格层三层深度解析',
-      'DeepSeek API 解析文本，字节跳动视觉 API 生成图像',
-      '内置物理规律校验 —— 运动要符合真实物理法则',
-      '跨媒体一致性检查：文本、图像、视频三者风格对齐',
-      'MoviePy 本地高质量拼接，自动清理临时资源',
-    ],
-    stack: ['Python', 'tkinter', 'MoviePy', 'DeepSeek API'],
-    stat: '1 star · MIT',
-    status: '研究性项目',
-    note:
-      '我最想验证的一点是把「物理规律」写进生成流程：视频生成最容易露馅的地方，就是物体不守物理。一致性和物理约束比单纯的画质更影响能不能用。',
-    link: 'https://github.com/0Sun-shine0/T2Video-DCOT',
   },
   {
     idx: '05',
