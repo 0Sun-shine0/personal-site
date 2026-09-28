@@ -5,3 +5,6 @@ dist/
 .install.out.log
 .install.err.log
 .DS_Store
+
+# 独立克隆进来的其他项目（不属于本站源码）
+T2Video/
