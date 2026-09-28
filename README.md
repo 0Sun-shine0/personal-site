@@ -75,12 +75,31 @@ npm run preview    # 本地预览 dist/（默认 http://localhost:4321）
    - 用 Cloudflare Pages / Vercel / 自己的域名：换成对应地址。
 3. **`public/robots.txt`** 里的 Sitemap 地址同步改成真实域名。
 
-## 建议补的两处
+## 分享卡片（OG 图）
+
+别人在微信 / QQ / X / Slack / 飞书里粘贴你的链接时，自动展开的那张预览图就是 OG 图
+（Open Graph Image）。它由页面 `<head>` 里的 `og:image` 指定，内容就是
+`public/og-cover.png`（**1200630**）：
+
+> 深色渐变底 + 「YI AN」+ 两行大字「把模型接上，把工具做顺。」+「AI TOOLS / DESKTOP & AGENT」+ 仓库地址
+
+**为什么是 PNG 而不是 SVG**：微信、QQ、X 这类平台抓取分享图时对 SVG 支持很不一致
+（多数直接不显示，卡片会退化成纯文字）。所以线上用的是 PNG，
+`og-cover.svg` 保留为**可编辑的源文件**。
+
+改完文字或配色后，重新生成 PNG 只要一条命令：
+
+```bash
+npm run og          # public/og-cover.svg  public/og-cover.png (1200x630)
+npm run build
+```
+
+（这个脚本依赖 `sharp`；它是 Astro 的依赖，正常情况下已经装好了。）
+
+## 建议补的一处
 
 - **头像**：现在首页/关于页用的是首字母色块（`.avatar` / `.brand__mark` 显示 `YA`）。
   真人照片的可信度会明显更高  图片放 `public/`，然后把对应标签换成 `<img>`。
-- **OG 分享图**：`public/og-cover.svg` 现在是 SVG。微信和 X 对 SVG 支持不一致，
-  建议导出成 1200630 的 PNG，然后改 `src/layouts/BaseLayout.astro` 里的文件名。
 
 ## 目录结构
 

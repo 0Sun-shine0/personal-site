@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "og": "node scripts/make-og.mjs",
     "prebuild": "node scripts/fix-env-plugin.mjs",
     "build": "astro build",
     "preview": "astro preview"
