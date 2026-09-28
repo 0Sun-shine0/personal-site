@@ -5,7 +5,7 @@
 
 站点主人：颐安 · GitHub [@0Sun-shine0](https://github.com/0Sun-shine0)
 
-定位：**正在学 AI Agent**，方式「边做边学」 每学一个概念就做成一个能跑的工具，小爪助手是目前的成果产出。
+定位：**正在学 AI Agent**，方式「边做边学」 —— 每学一个概念就做成一个能跑的工具，小爪助手是目前的成果产出。
 
 ## 站点内容从哪来
 
@@ -61,13 +61,18 @@ npm run preview    # 本地预览 dist/（默认 http://localhost:4321）
    git config user.name  "颐安"
    git config user.email "maaikk@126.com"
    ```
-   这是**仓库级**配置（写在 `.git/config` 里，不进版本库），只影响这个站点项目 
+   这是**仓库级**配置（写在 `.git/config` 里，不进版本库），只影响这个站点项目 ——
    你在别的项目里仍然可以用原来的身份。**换机器后记得重新执行这两行**，
    否则新提交会再次带上真实姓名和工作邮箱。
-3. **历史记录**：仓库从未推送过，所以旧提交（含真名的作者字段与提交信息）已经
-   用 `git commit-tree` 整体重写，旧对象也已 `gc` 清除。
+3. **历史记录**：真名是**在第一次推送之前**就从提交里清掉的，所以 GitHub 上从来没有
+   出现过真实姓名或工作邮箱 —— 远端历史里只有「颐安」。清理方式是先用 `git commit-tree`
+   重建全部提交（作者、提交者、提交信息、时间戳一并处理），再 `git reflog expire` +
+   `git gc --prune=now` 把旧对象从本地彻底移除。
 
-> 关于第 3 点：如果这个仓库**已经推到过 GitHub**，改写本地历史是没用的 
+> 一些命名规范踩坑记录：`git filter-branch` 在本机因为要起 shell、被沙箱拦住，
+> 所以历史重写是用 `git commit-tree` 从对象层做的（不依赖 shell）。
+>
+> 顺带一条通用经验：**如果真名已经推到过远端，只在本地改写历史是没用的** ——
 > 远端和 GitHub 的缓存里仍然留着旧提交。那种情况下需要先删掉远端仓库重建，
 > 或者用 `git push --force` 覆盖后再联系 GitHub 支持清理缓存。
 
@@ -158,7 +163,7 @@ git push
 改完文字或配色后，重新生成 PNG 只要一条命令：
 
 ```bash
-npm run og          # public/og-cover.svg  public/og-cover.png (1200x630)
+npm run og          # public/og-cover.svg → public/og-cover.png (1200×630)
 npm run build
 ```
 
