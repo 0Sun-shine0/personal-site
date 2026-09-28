@@ -3,7 +3,7 @@
 纯静态个人站点：**Astro 7 + 手写 CSS**，没有前端框架、没有运行时依赖、没有分析脚本。
 构建产物是纯 HTML/CSS/JS，扔到任何静态托管上都能跑。
 
-站点主人：颐安（真名马靖凯） GitHub [@0Sun-shine0](https://github.com/0Sun-shine0)
+站点主人：颐安  GitHub [@0Sun-shine0](https://github.com/0Sun-shine0)
 
 ## 站点内容从哪来
 

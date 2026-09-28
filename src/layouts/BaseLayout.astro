@@ -19,7 +19,7 @@ const desc = description ?? site.intro;
 const canonical = new URL(Astro.url.pathname, base).href;
 // 分享卡片用 PNG：微信 / QQ / X 对 SVG 支持不一致，多数直接不显示
 const ogImage = new URL('/og-cover.png', base).href;
-const ogImageAlt = `${site.name}（${site.realName}） ${site.tagline}`;
+const ogImageAlt = `${site.name}  ${site.tagline}`;
 ---
 <!doctype html>
 <html lang="zh-CN" data-theme="dark">

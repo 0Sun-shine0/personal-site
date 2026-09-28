@@ -5,7 +5,6 @@
 
 export const site = {
   name: '颐安',
-  realName: '马靖凯',
   initials: 'YA',
   role: 'AI 应用开发',
   tagline: '把大模型做成能天天用的桌面工具',
