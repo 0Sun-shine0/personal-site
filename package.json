@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "林默的个人网站  Astro 静态站",
+  "description": "颐安的个人网站 —— Astro 静态站",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

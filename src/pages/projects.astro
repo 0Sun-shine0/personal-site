@@ -13,7 +13,7 @@ import { featured, projects, earlyWork, site } from '../data/site';
       <span class="eyebrow">作品</span>
       <h1>我做过什么，以及踩了什么坑</h1>
       <p class="lead">
-        主推项目按 <b class="muted">问题</b>  <b class="muted">方案</b>  <b class="muted">结果</b>  <b class="muted">反思</b> 写全；
+        主推项目按 <b class="muted">问题</b> → <b class="muted">方案</b> → <b class="muted">结果</b> → <b class="muted">反思</b> 写全；
         其他项目有各自的「为什么做」和「做完想通了什么」。反思那一段最有用，因为它是下次不会再犯的部分。
       </p>
     </div>
@@ -25,7 +25,7 @@ import { featured, projects, earlyWork, site } from '../data/site';
       {featured.map((p) => (
         <article class="card" id={`p${p.idx}`} data-reveal>
           <div class="card__top">
-            <span class="card__idx">{p.idx}  {p.tags.join(' / ')}</span>
+            <span class="card__idx">{p.idx} — {p.tags.join(' / ')}</span>
             <a class="card__link" href={p.link} target="_blank" rel="noopener">看源码 <Icon name="arrow" cls="btn__icon" /></a>
           </div>
 
@@ -73,7 +73,7 @@ import { featured, projects, earlyWork, site } from '../data/site';
         {projects.map((p) => (
           <article class="card" id={`p${p.idx}`} data-reveal>
             <div class="card__top">
-              <span class="card__idx">{p.idx}  {p.status}</span>
+              <span class="card__idx">{p.idx} — {p.status}</span>
               <a class="card__link" href={p.link} target="_blank" rel="noopener">看源码 <Icon name="arrow" cls="btn__icon" /></a>
             </div>
             <h3 style="font-size:1.2rem">{p.title}</h3>
@@ -129,7 +129,7 @@ import { featured, projects, earlyWork, site } from '../data/site';
     <div class="wrap">
       <div class="cta" data-reveal>
         <h2>想聊细节？</h2>
-        <p>这些项目里真正有意思的是取舍过程  为什么这么设计、当时纠结了什么，欢迎直接来问。</p>
+        <p>这些项目里真正有意思的是取舍过程 —— 为什么这么设计、当时纠结了什么，欢迎直接来问。</p>
         <div class="btn-row" style="justify-content:center">
           <a class="btn btn--primary" href={site.github} target="_blank" rel="me noopener"><Icon name="github" size={16} />GitHub</a>
           <a class="btn" href="/blog">看踩坑笔记 <Icon name="arrow" cls="btn__icon" /></a>

@@ -2,7 +2,7 @@
 import PostLayout from '../../layouts/PostLayout.astro';
 
 export function getStaticPaths() {
-  // 注意：glob 必须写在函数内部  Astro 会把 getStaticPaths 提到单独模块，拿不到函数外的变量
+  // 注意：glob 必须写在函数内部 —— Astro 会把 getStaticPaths 提到单独模块，拿不到函数外的变量
   const mods = import.meta.glob('../../posts/*.md', { eager: true }) as Record<string, any>;
   return Object.entries(mods).map(([path, mod]) => ({
     params: { slug: path.split('/').pop()!.replace(/\.md$/, '') },

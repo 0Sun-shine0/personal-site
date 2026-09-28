@@ -1,5 +1,5 @@
 // ===========================================================================
-// 站点配置  内容都从这里来，改这一个文件就能改整站
+// 站点配置 —— 内容都从这里来，改这一个文件就能改整站
 // 注意：下面的联系方式是公开信息（会出现在页面源码里），换号记得同步改这里
 // ===========================================================================
 
@@ -52,9 +52,9 @@ export const techStack = [
 export const featured = [
   {
     idx: '01',
-    title: '小爪助手  常驻桌面的小助手',
+    title: '小爪助手 — 常驻桌面的小助手',
     summary:
-      '宠物只是它的脸。真正在干活的是待办、番茄钟、提醒、便签四件套  完全离线、不用注册、数据只存本机；AI（看屏幕、替你点键鼠）是可选加成，配不配 API Key 都完整可用。',
+      '宠物只是它的脸。真正在干活的是待办、番茄钟、提醒、便签四件套 — 完全离线、不用注册、数据只存本机；AI（看屏幕、替你点键鼠）是可选加成，配不配 API Key 都完整可用。',
     problem:
       '给自己做个桌面助手，但市面上的选择很极端：要么只有一只宠物、不解决任何实际问题；要么是个配好一堆东西才能跑的 AI 壳子，新用户第一次打开就卡在「还没有配置模型」上，然后关掉。',
     approach:
@@ -62,7 +62,7 @@ export const featured = [
     result:
       '14 天 81 次提交做到 v2.4.0：Python <b>150 个文件 4.1 万行</b>、QML <b>27 个文件 1 万行</b>，而运行依赖只有 <b>一个</b>（PySide6-Essentials）。一条命令产出单文件安装程序（约 120MB）和绿色版；安装向导、卸载器都是用 tkinter 自己写的，不依赖 Inno Setup。打包前会先跑 <b>107 个自测脚本</b>（其中 50 个是回归测试），不通过就不出包。',
     lesson:
-      '最早的版本是 tkinter 写的：宠物坐标写死（每次启动都回原位）、待办只渲染最后 5 条（第 6 条看不见也删不掉）、双击启动两次会出现两只猫、直接覆盖写 JSON（写一半崩了就丢数据）。重写一遍之后我的结论是  桌面工具的难点从来不是功能，而是「装完就能用」和「数据不会丢」这两件枯燥的事。',
+      '最早的版本是 tkinter 写的：宠物坐标写死（每次启动都回原位）、待办只渲染最后 5 条（第 6 条看不见也删不掉）、双击启动两次会出现两只猫、直接覆盖写 JSON（写一半崩了就丢数据）。重写一遍之后我的结论是 —— 桌面工具的难点从来不是功能，而是「装完就能用」和「数据不会丢」这两件枯燥的事。',
     metrics: ['v2.4.0', '14 天 81 次提交', '4.1 万行 Python', '运行依赖只有 1 个'],
     tags: ['Python', 'PySide6', 'Qt Quick / QML', 'PyInstaller'],
     link: 'https://github.com/0Sun-shine0/PawPet',
@@ -97,7 +97,7 @@ export const projects = [
       '可视化 Chat 与会话管理：创建 / 切换 / 重命名 / 删除',
       '工作区文件树、代码 Diff 预览、内嵌 xterm.js 终端',
       'MCP 服务器、Skills、Memory 三块管理面板',
-      'Plan  Checkpoint  Revision 的审批流程可视化',
+      'Plan → Checkpoint → Revision 的审批流程可视化',
       'K 命令面板、明暗主题、Jobs 状态栏、token 上下文面板',
     ],
     stack: ['Electron 35', 'React 19', 'TypeScript 5', 'Vite 5'],
@@ -109,17 +109,17 @@ export const projects = [
   },
   {
     idx: '04',
-    title: 'T2Video-DCOT  文生视频',
-    subtitle: '基于动态思维链（DCOT）的文生视频：文本  三层解析  图像序列  视频。',
+    title: 'T2Video-DCOT · 文生视频',
+    subtitle: '基于动态思维链（DCOT）的文生视频：文本 → 三层解析 → 图像序列 → 视频。',
     points: [
       '意象层 / 物理层 / 风格层三层深度解析',
       'DeepSeek API 解析文本，字节跳动视觉 API 生成图像',
-      '内置物理规律校验  运动要符合真实物理法则',
+      '内置物理规律校验 — 运动要符合真实物理法则',
       '跨媒体一致性检查：文本、图像、视频三者风格对齐',
       'MoviePy 本地高质量拼接，自动清理临时资源',
     ],
     stack: ['Python', 'tkinter', 'MoviePy', 'DeepSeek API'],
-    stat: '1 star  MIT',
+    stat: '1 star · MIT',
     status: '研究性项目',
     note:
       '我最想验证的一点是把「物理规律」写进生成流程：视频生成最容易露馅的地方，就是物体不守物理。一致性和物理约束比单纯的画质更影响能不能用。',
@@ -136,7 +136,7 @@ export const projects = [
       '逐项打印清理结果，只动临时文件和缓存',
     ],
     stack: ['PowerShell', 'Windows 10 / 11'],
-    stat: '1 star  MIT',
+    stat: '1 star · MIT',
     status: '完成，日常在用',
     note:
       '写它的理由很朴素：每次帮同事清 C 盘都要重复一模一样的一套动作。手重复第三遍的时候就该写脚本了。',
@@ -148,28 +148,28 @@ export const projects = [
 export const earlyWork = [
   {
     year: '2024',
-    title: 'YiTiTong  艺体通抢课脚本',
-    desc: '给还在学校的同学写的抢课脚本，1 star  收过最好笑的 star。',
+    title: 'YiTiTong · 艺体通抢课脚本',
+    desc: '给还在学校的同学写的抢课脚本，1 star —— 收过最好笑的 star。',
     stack: ['脚本'],
     link: 'https://github.com/0Sun-shine0/YiTiTong',
   },
   {
     year: '2022',
-    title: 'hd_django_sever  小程序后端基础架构',
+    title: 'hd_django_sever · 小程序后端基础架构',
     desc: 'Django 做的后端脚手架：内置用户体系、后台管理、API 文档、统一响应体、异常集中处理、JWT、日志与 Sentry。MIT，1 star。',
     stack: ['Django', 'Python'],
     link: 'https://github.com/0Sun-shine0/hd_django_sever',
   },
   {
     year: '2023',
-    title: 'OnlineBooks  图书管理系统',
+    title: 'OnlineBooks · 图书管理系统',
     desc: 'JSP + Servlet + Tomcat 9 + MySQL 的课程项目：开借书服务、登记图书、记录借出。',
     stack: ['Java', 'JSP', 'MySQL'],
     link: 'https://github.com/0Sun-shine0/OnlineBooks',
   },
   {
     year: '2018',
-    title: 'LibraryManager  图书馆管理系统',
+    title: 'LibraryManager · 图书馆管理系统',
     desc: 'Java AWT（不是 Swing）+ Access 数据库，还得用 32 位 JDK 才能跑。我最早的仓库，1 star。',
     stack: ['Java', 'Access'],
     link: 'https://github.com/0Sun-shine0/LibraryManager',

@@ -11,7 +11,7 @@ const esc = (s: unknown) =>
     .replace(/"/g, '&quot;');
 
 export async function GET(context: APIContext) {
-  const base = (context.site ?? new URL('https://linmo.dev')).href.replace(/\/$/, '');
+  const base = (context.site ?? new URL('https://0sun-shine0.github.io')).href.replace(/\/$/, '');
 
   const items = Object.entries(mods)
     .map(([path, m]) => {

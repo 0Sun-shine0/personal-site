@@ -1,13 +1,13 @@
 /* ==========================================================================
-   个人网站  交互脚本（原生 JS，无依赖）
-   1 主题切换  2 导航  3 入场动画  4 卡片跟随光  5 复制邮箱  6 阅读进度
+   个人网站 —— 交互脚本（原生 JS，无依赖）
+   1 主题切换 · 2 导航 · 3 入场动画 · 4 卡片跟随光 · 5 复制邮箱 · 6 阅读进度
    ========================================================================== */
 (function () {
   'use strict';
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* 1  主题切换  */
+  /* 1 · 主题切换 · */
   var STORE = 'theme';
   function applyTheme(t) {
     root.setAttribute('data-theme', t);
@@ -27,7 +27,7 @@
     });
   });
 
-  /* 2  导航：滚动状态 / 移动端菜单 / 当前页高亮  */
+  /* 2 · 导航：滚动状态 / 移动端菜单 / 当前页高亮 · */
   var nav = document.querySelector('.nav');
   if (nav) {
     var onScroll = function () {
@@ -60,7 +60,7 @@
     });
   }
 
-  /* 3  滚动入场动画（带错落延迟）  */
+  /* 3 · 滚动入场动画（带错落延迟） · */
   var reveals = document.querySelectorAll('[data-reveal]');
   if (reduce || !('IntersectionObserver' in window)) {
     reveals.forEach(function (el) { el.classList.add('is-in'); });
@@ -76,7 +76,7 @@
     void total;
   }
 
-  /* 4  卡片跟随鼠标的柔光  */
+  /* 4 · 卡片跟随鼠标的柔光 · */
   if (!reduce && window.matchMedia('(hover:hover)').matches) {
     document.querySelectorAll('.card').forEach(function (card) {
       card.addEventListener('pointermove', function (e) {
@@ -87,7 +87,7 @@
     });
   }
 
-  /* 5  复制邮箱 + 轻提示  */
+  /* 5 · 复制邮箱 + 轻提示 · */
   var toastEl = document.createElement('div');
   toastEl.className = 'toast';
   toastEl.setAttribute('role', 'status');
@@ -118,7 +118,7 @@
     });
   });
 
-  /* 6  文章阅读进度条  */
+  /* 6 · 文章阅读进度条 · */
   if (document.body.hasAttribute('data-progress')) {
     var bar = document.createElement('div');
     bar.className = 'progress';

@@ -3,7 +3,7 @@
 纯静态个人站点：**Astro 7 + 手写 CSS**，没有前端框架、没有运行时依赖、没有分析脚本。
 构建产物是纯 HTML/CSS/JS，扔到任何静态托管上都能跑。
 
-站点主人：颐安  GitHub [@0Sun-shine0](https://github.com/0Sun-shine0)
+站点主人：颐安 · GitHub [@0Sun-shine0](https://github.com/0Sun-shine0)
 
 定位：**正在学 AI Agent**，方式「边做边学」 每学一个概念就做成一个能跑的工具，小爪助手是目前的成果产出。
 
@@ -18,7 +18,7 @@
 | PawPet README 的「五个踩过的坑」+ `docs/评审-小爪AI-Agent层.md` | 5 篇笔记（点击穿透 / BOM 数据丢失 / 权限审批链 / token 成本 / 打包发布） |
 
 > **发布前请通读这 5 篇笔记。** 它们是从你自己项目的 README 和评审文档里整理成文的，
-> 技术细节都来自源码和文档，但**行文口吻是我按「第一人称作者」写的**  如果某些
+> 技术细节都来自源码和文档，但**行文口吻是我按「第一人称作者」写的** —— 如果某些
 > 结论或细节你想改，直接改 `src/posts/*.md` 就行。
 
 ## 页面
@@ -29,7 +29,7 @@
 | 作品 | `/projects` | 主推项目四段式 + 4 个其他作品 + 4 条早期作品 |
 | 笔记列表 | `/blog` | 按时间排序，带标签 |
 | 笔记详情 | `/blog/<slug>` | 目录、阅读进度条、代码高亮、表格 |
-| 关于 | `/about` | 时间线（2018  2026）、我在关心什么、我不会什么 |
+| 关于 | `/about` | 时间线（2018 → 2026）、我在关心什么、我不会什么 |
 | 现在 | `/now` | 这个月在忙什么（三个月更新一次即可） |
 | 装备 | `/uses` | 语言框架、运行环境、编辑器、打包发布 |
 | 404 | `/404.html` | 自定义缺省页 |
@@ -82,7 +82,7 @@ npm run preview    # 本地预览 dist/（默认 http://localhost:4321）
 | 城市 | 湖北武汉 | 页脚、关于页、首页状态、现在页 |
 
 这些都在 `src/data/site.ts` 里：`location` / `email` / `qq` / `wechat` / `github`，
-另外 `contacts` 数组统一驱动所有复制按钮  **改一处，全站同步**。
+另外 `contacts` 数组统一驱动所有复制按钮 —— **改一处，全站同步**。
 （联系方式是公开信息，会出现在页面源码里，换号记得改这里。）
 
 > 注意：站点已去掉 X / Twitter 的社交链接。`BaseLayout.astro` 里保留的
@@ -90,11 +90,7 @@ npm run preview    # 本地预览 dist/（默认 http://localhost:4321）
 
 ## 推送到 GitHub
 
-这个项目的源码仓库是**私有的**：
-
-```
-https://github.com/0Sun-shine0/personal-site   (PRIVATE)
-```
+仓库是**公开**的：https://github.com/0Sun-shine0/personal-site
 
 远程地址用的是**带用户名的形式**：
 
@@ -103,7 +99,7 @@ git remote -v
 # origin  https://0Sun-shine0@github.com/0Sun-shine0/personal-site.git
 ```
 
-为什么多加这一段 `0Sun-shine0@`  因为这台机器的全局 `~/.gitconfig` 里有一条
+为什么多加这一段 `0Sun-shine0@` —— 因为开发机的全局 `~/.gitconfig` 里有一条
 早先为了绕网络限制而加的改写规则：
 
 ```ini
@@ -114,8 +110,12 @@ git remote -v
 它会把**所有** github 地址偷偷改写成 gitee 镜像（而那个镜像是 404 的）。
 带用户名的 URL 不以 `https://github.com/` 开头，因此不会被命中，能正常推到 GitHub。
 
-> 想彻底去掉这个隐患，可以删掉 `~/.gitconfig` 里那两行（`git config --global --unset-all url.https://gitee.com/mirrors/.insteadof`），
-> 然后 `git remote set-url origin https://github.com/0Sun-shine0/personal-site.git`。
+> 想彻底去掉这个隐患：
+>
+> ```bash
+> git config --global --unset-all url.https://gitee.com/mirrors/.insteadof
+> git remote set-url origin https://github.com/0Sun-shine0/personal-site.git
+> ```
 
 ### 日常推送
 
@@ -125,31 +125,29 @@ git commit -m "你的改动"
 git push
 ```
 
-如果提示要账号密码：密码处填 **Personal Access Token**（不是登录密码）。
-这台机器上已经有一个 `gho_` 开头的 token 存在 Windows 凭据管理器里（用户 `0Sun-shine0`）。
+提示要密码时，密码处填 **Personal Access Token**（不是登录密码）。
 
 ## 部署
 
-源码私有，**部署出去的页面仍然是公开的**。可选：
+仓库是公开的，主流托管都能直接连：
 
-- **Cloudflare Pages / Vercel / Netlify**：直接连私有仓库（它们有权限读），构建命令 `npm run build`，输出目录 `dist`。
-- **GitHub Pages**：注意  免费账号**不能从私有仓库发布 Pages**（需要 Pro/Team）。
-  要么把仓库改成公开，要么改用上面几家。
+- **Cloudflare Pages / Vercel / Netlify**：连接本仓库，构建命令 `npm run build`，输出目录 `dist`。
+- **GitHub Pages**：注意发布路径取决于仓库名。
+  - 若把仓库改名为 `0Sun-shine0.github.io`，会发布到根路径 `https://0sun-shine0.github.io/`，
+    现在 `astro.config.mjs` 里的 `site` 正好就是这个值，不用改。
+  - 若保持 `personal-site` 这个仓库名，会发布到子路径 `https://0Sun-shine0.github.io/personal-site/`，
+    除了把 `site` 改成这个带子路径的地址，还要在 `astro.config.mjs` 里加 `base: '/personal-site'`。
+
 ## 上线前必须改的
 
-1. **站点地址**：`astro.config.mjs` 的 `site`（现在是 `https://0sun-shine0.github.io`）。
-   它决定 sitemap / RSS / canonical 里的绝对链接。
-   - 用 GitHub Pages 用户主页：仓库名必须是 `0Sun-shine0.github.io`，现有值即可；
-   - 用**项目页**（仓库名是别的）：地址变成 `https://0sun-shine0.github.io/<仓库名>/`，
-     除了改 `site` 还要加 `base: '/<仓库名>'`；
-   - 用 Cloudflare Pages / Vercel / 自己的域名：换成对应地址。
-3. **`public/robots.txt`** 里的 Sitemap 地址同步改成真实域名。
-
+1. **站点地址**：`astro.config.mjs` 里的 `site`（现在是 `https://0sun-shine0.github.io`）。
+   它是 sitemap / RSS / canonical 的基准，按上面「部署」一节选定托管方式后填对应地址。
+2. **`public/robots.txt`** 里的 Sitemap 地址，同步改成真实域名。
 ## 分享卡片（OG 图）
 
 别人在微信 / QQ / X / Slack / 飞书里粘贴你的链接时，自动展开的那张预览图就是 OG 图
 （Open Graph Image）。它由页面 `<head>` 里的 `og:image` 指定，内容就是
-`public/og-cover.png`（**1200630**）：
+`public/og-cover.png`（**1200×630**）：
 
 > 深色渐变底 + 「YI AN」+ 两行大字「把模型接上，把工具做顺。」+「AI TOOLS / DESKTOP & AGENT」+ 仓库地址
 
@@ -169,7 +167,7 @@ npm run build
 ## 建议补的一处
 
 - **头像**：现在首页/关于页用的是首字母色块（`.avatar` / `.brand__mark` 显示 `YA`）。
-  真人照片的可信度会明显更高  图片放 `public/`，然后把对应标签换成 `<img>`。
+  真人照片的可信度会明显更高 —— 图片放 `public/`，然后把对应标签换成 `<img>`。
 
 ## 目录结构
 
@@ -196,7 +194,7 @@ src/
  scripts/main.js         交互脚本（主题、抽屉、动画、复制、进度条）
  shims/picomatch.mjs     给 Vite 用的 ESM 垫片（见文末）
 public/                     favicon.svg / og-cover.svg / robots.txt
-scripts/fix-env-plugin.mjs  受限环境的构建适配（见文末）
+scripts/fix-env-plugin.mjs —— 受限环境的构建适配（见文末）
 ```
 
 ## 怎么改内容

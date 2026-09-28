@@ -11,7 +11,7 @@ const posts = Object.entries(mods)
 
 // 首屏代码窗口：审批链的第一行（示意，实际在 pawpet/ai/tools.py）
 const snippet = [
-  '<span class="tk-com"># ai/tools.py  审批链的第一行</span>',
+  '<span class="tk-com"># ai/tools.py · 审批链的第一行</span>',
   '<span class="tk-key">def</span> <span class="tk-fn">needs_approval</span><span class="tk-punc">(</span>self<span class="tk-punc">,</span> action<span class="tk-punc">,</span> level<span class="tk-punc">)</span> <span class="tk-punc">-&gt;</span> <span class="tk-key">bool</span><span class="tk-punc">:</span>',
   '    <span class="tk-key">if</span> action<span class="tk-punc">.</span>risk <span class="tk-key">is</span> Risk<span class="tk-punc">.</span>CRITICAL<span class="tk-punc">:</span>',
   '        <span class="tk-key">return</span> <span class="tk-num">True</span>   <span class="tk-com"># 装工具 / 跑自定义代码</span>',
@@ -29,7 +29,7 @@ const total = featured.length + projects.length;
     <div class="wrap hero__grid">
       <div class="hero__copy">
         <span class="pill">
-          <span class="dot" aria-hidden="true"></span>{site.location}  {site.status}
+          <span class="dot" aria-hidden="true"></span>{site.location} · {site.status}
         </span>
 
         <h1>
@@ -97,7 +97,7 @@ const total = featured.length + projects.length;
           <span class="eyebrow">主推作品</span>
           <h2>小爪助手：一只会干活的小宠物</h2>
           <p class="lead">
-            宠物只是它的脸。真正在干活的是待办、番茄钟、提醒、便签  完全离线、不用注册、数据只存本机。
+            宠物只是它的脸。真正在干活的是待办、番茄钟、提醒、便签 — 完全离线、不用注册、数据只存本机。
             AI（看屏幕、替你点键鼠）是可选加成，配不配 API Key 都完整可用。
           </p>
         </div>
@@ -108,7 +108,7 @@ const total = featured.length + projects.length;
         {featured.map((p, i) => (
           <article class="card" data-reveal style={`--d:${i * 90}ms`}>
             <div class="card__top">
-              <span class="card__idx">{p.idx}  {p.tags[0]}</span>
+              <span class="card__idx">{p.idx} — {p.tags[0]}</span>
               <a class="card__link" href={`/projects#p${p.idx}`}>案例详情 <Icon name="arrow" cls="btn__icon" /></a>
             </div>
             <h3>{p.title}</h3>
@@ -128,7 +128,7 @@ const total = featured.length + projects.length;
         {projects.slice(0, 3).map((p, i) => (
           <article class="card" data-reveal style={`--d:${(i + 1) * 90}ms`}>
             <div class="card__top">
-              <span class="card__idx">{p.idx}  {p.stack[0]}</span>
+              <span class="card__idx">{p.idx} — {p.stack[0]}</span>
               <a class="card__link" href={`/projects#p${p.idx}`}>看看这个 <Icon name="arrow" cls="btn__icon" /></a>
             </div>
             <h3>{p.title}</h3>
@@ -176,7 +176,7 @@ const total = featured.length + projects.length;
     <div class="wrap">
       <div class="cta" data-reveal>
         <h2>也在做桌面工具，或者想聊 Agent 设计？</h2>
-        <p>权限怎么分级、什么时候该合并确认、打包怎么少踩坑  这些我都踩过一遍，欢迎来交换经验。</p>
+        <p>权限怎么分级、什么时候该合并确认、打包怎么少踩坑 —— 这些我都踩过一遍，欢迎来交换经验。</p>
         <div class="btn-row" style="justify-content:center">
           <a class="btn btn--primary" href={site.github} target="_blank" rel="me noopener"><Icon name="github" size={16} />去 GitHub 找我</a>
           <a class="btn" href={`mailto:${site.email}`}><Icon name="mail" size={15} />写信：{site.email}</a>
