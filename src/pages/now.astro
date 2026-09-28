@@ -6,78 +6,58 @@ const updated = '2026-09-28';
 ---
 <BaseLayout
   title="现在"
-  description="颐安这个月在忙什么：学 AI Agent 的进展、小爪助手 v2.4、打包与发布、Agent 层自评审，以及今年想做到的事。"
+  description="颐安最近在做的事：继续学习 AI Agent，整理小爪助手和一个旧的视频项目。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
       <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">现在</span></nav>
       <span class="eyebrow">现在</span>
-      <h1>这个月在忙什么</h1>
-      <p class="lead">
-        这一页记录「此刻」的状态。常驻 {site.location}，最后更新：<span class="mono">{updated}</span>
-      </p>
+        <h1>最近在忙什么</h1>
+        <p class="lead">
+          这一页不当简历，只记我这段时间学习和实践 Agent 时真的在做的事。常驻 {site.location}，最后更新：<span class="mono">{updated}</span>
+        </p>
     </div>
   </section>
 
   <section class="section section--tight">
     <div class="wrap two-col">
       <div class="article">
-        <h2>在学 AI Agent</h2>
+        <h2>小爪助手</h2>
         <ul>
-          <li><b>工具调用与权限</b>：怎么让模型安全地用工具 —— 审批链、风险分级、fail closed 的边界在哪。</li>
-          <li><b>上下文与成本</b>：一次截图几万 token，怎么把每轮的固定开销压到最小（记忆和知识库都改成了检索）。</li>
-          <li><b>失败自纠</b>：让 Agent 自己发现做错了并重来，比让它一次做对更现实。</li>
-          <li>学习方式：<b>学一个概念就做成一个能跑的东西</b>。小爪助手就是这条路的产物，不是先学完再做。</li>
+          <li>继续把从项目里学到的 Agent 能力整理清楚：工具调用、屏幕识别、权限确认和上下文管理。</li>
+          <li>基础功能保持离线运行：待办、番茄钟、提醒和便签不依赖模型也能使用。</li>
+          <li>宠物周围的点击区域改成跟着实际渲染结果走，透明的地方不再挡住桌面图标。</li>
+          <li>专注可以直接关联待办；删除支持撤销，数据文件被手动改坏时只处理出问题的那一项。</li>
+          <li>安装包、绿色版和卸载流程继续收尾，目标是发给一个不折腾电脑的朋友，他也能自己装好。</li>
         </ul>
 
-        <h2>T2Video 重构（本月）</h2>
+        <h2>T2Video 重构</h2>
         <ul>
-          <li>把 <b>2207 行的单文件</b>拆成 8 个模块：分镜 / 提示词 / 视觉接口 / 拼接 / 验证 / 界面 / 账户 / 参数。模块边界和方法步骤对齐之后，改一处不用再在两千行里跳。</li>
-          <li>补 <b>230 个测试函数 / 294 个用例 / 303 条断言</b>。网络请求全部用伪造会话 —— 跑测试不花 API 钱；签名那块是照官方示例独立重算一遍再比对，而不是拿被测代码验证它自己。</li>
-          <li>修掉 <b>8 个影响实际功能的缺陷</b>。最严重的一个：资源清理会递归遍历系统临时目录、删掉所有超过 24 小时的文件，而且启动时自动跑。</li>
-          <li>把假的一致性检查换成真指标：原来那版是数轮廓当物体检测、再跟中文关键词个数比大小，两个数没有任何可比语义；界面上写着的「物理验证」，代码里根本不存在。</li>
-          <li>顺带两处：<code>requirements.txt</code> 是 UTF-16 编码、列的还是 minio / kafka 这类无关依赖，真正的依赖一个没写；模块名曾经用的是第三方产品名，改成按职责命名。</li>
+          <li>把 <b>2207 行的单文件</b>拆成 8 个模块，分镜、接口、拼接和验证各自有了位置，改一处不用再在两千行里跳。</li>
+          <li>补了 <b>230 个测试函数 / 294 个用例 / 303 条断言</b>，网络请求用伪造会话，跑测试不花 API 钱。</li>
+          <li>修掉 <b>8 个实际缺陷</b>，其中包括启动时误删系统临时目录文件的问题。</li>
+          <li>把原来只是“看起来像验证”的部分换成了 6 项可以实际计算的指标，也把依赖文件重新整理了一遍。</li>
         </ul>
 
-        <h2>小爪助手：从「我能用」推向「别人也能用」</h2>
+        <h2>最近补的基础工作</h2>
         <ul>
-          <li>宠物周围的点击穿透：以前那个透明方块会挡住底下的桌面图标，现在按画面实际渲染出来的形状决定哪里能点 —— 呼吸、眨眼、贴边侧躺都不会让点击位置跑偏。</li>
-          <li>专注可以关联待办了：选一条待办开始专注，一轮自然结束会自动记一个番茄，中途放弃和休息轮不记账。</li>
-          <li>删除可撤销、数据文件更耐折腾：文件被手改坏只退回坏掉的那一项，且坏文件会改名保留，不直接覆盖。</li>
-          <li>插拔显示器不会再弄丢宠物：改分辨率、拔外接屏之后，宠物会重新回到可见范围内。</li>
+          <li>把打包流程串起来：自测、打包、启动验证、安装测试和绿色版都由一条命令完成。</li>
+          <li>权限边界重新过了一遍：普通操作可以合并确认，但安装代码和执行高风险命令仍然单独询问。</li>
+          <li>继续补 Qt Quick 的布局测试和 PySide6 属性映射这类容易静默出错的地方。</li>
         </ul>
 
-        <h2>打包与发布这条线</h2>
+        <h2>接下来</h2>
         <ul>
-          <li>一条命令跑完：自测 → 生成图标 → PyInstaller 打包 → <b>真的启动一次打出来的 exe</b> 验证 → 压 payload → 出单文件安装程序 → 端到端测安装流程 → 出绿色版。</li>
-          <li>安装向导和卸载器是用 tkinter 自己写的（不依赖 Inno Setup）：可选安装位置、桌面快捷方式、开机自启，卸载时先问一句要不要删数据（默认保留），最后把自己也删掉。</li>
-        </ul>
-
-        <h2>Agent 层自评审</h2>
-        <ul>
-          <li>修掉了一个 P0：<code>code</code> 档的自我扩权闭环 —— 在「完全自动」下，「装自定义工具」和「跑自定义代码」曾经可以全程零确认。</li>
-          <li>把危险命令黑名单做了归一化（去转义符、去引号、压空白），并把「必须拦」和「不该误伤」两张表写成 46 条测试守着。</li>
-          <li>批量确认上了：同一轮里最多合并 6 个操作，但高危操作永远单独问，没明确同意一律按拒绝处理。</li>
-        </ul>
-
-        <h2>学习</h2>
-        <ul>
-          <li>Qt Quick 的布局与渲染：为什么在测试里量 QML 布局必须给一个真实窗口 + 一次真正的 sync。</li>
-          <li>PySide6 的 <code>@Property</code> 与 QML 命名映射 —— 驼峰写错会静默拿到 undefined，不报错、不崩溃，界面就是一片空白。</li>
-        </ul>
-
-        <h2>今年想做到</h2>
-        <ul>
-          <li>把小爪发给一个完全不懂技术的朋友，他一路点完就能用，中途不需要问我任何问题。</li>
-          <li>补上自动更新和代码签名 —— 这是「泛用户化」路线上最后两道坎。</li>
-          <li>把「装完就能用、数据不会丢」这条原则坚持到之后所有项目。</li>
+          <li>把小爪发给一个完全不懂技术的朋友，看看他能不能不问我就装好并用起来。</li>
+          <li>补上自动更新和代码签名，再把安装过程交给真实用户试一次。</li>
+          <li>以后做别的工具，也继续保留“先能用，再加功能”的节奏。</li>
         </ul>
 
         <div class="callout">
           <span aria-hidden="true"><Icon name="clock" size={18} /></span>
           <div>
-            <b>这一页怎么用</b><br />
-            如果你在考虑和我合作或者招我，这页能告诉你我最近真正在花时间的地方 —— 比技能列表靠谱一些。
+            <b>这一页是什么</b><br />
+            它不是完整的计划表，只是我最近确实在花时间的几件事。做完或改变方向之后，我会回来更新。
           </div>
         </div>
       </div>
@@ -86,10 +66,10 @@ const updated = '2026-09-28';
         <div class="card">
           <span class="eyebrow">在做的项目</span>
           <div class="stack gap-sm" style="margin-top:.8rem">
-            <span class="mono faint">AI Agent 学习：工具调用 / 上下文 / 权限</span>
-            <span class="mono faint">小爪助手 PawPet · v2.4.0（成果产出）</span>
-            <span class="mono faint">泛用户化：还剩自动更新 + 代码签名</span>
-            <span class="mono faint">Agent 层：权限 / 成本 / 记忆</span>
+            <span class="mono faint">小爪助手 PawPet · v2.4.0</span>
+            <span class="mono faint">T2Video · 重构与测试</span>
+            <span class="mono faint">打包发布 · 自动更新与代码签名</span>
+            <span class="mono faint">Agent 学习 · 工具调用与权限</span>
           </div>
           <div class="btn-row" style="margin-top:1.1rem">
             <a class="btn btn--sm" href="/projects">看作品 <Icon name="arrow" cls="btn__icon" /></a>
@@ -100,7 +80,7 @@ const updated = '2026-09-28';
           <div class="stack gap-sm" style="margin-top:.8rem">
             <span class="mono faint">Qt Quick 场景图与渲染管线</span>
             <span class="mono faint">Windows UI Automation 文档</span>
-            <span class="mono faint">别人的 Agent 权限设计（看别人怎么防手滑）</span>
+            <span class="mono faint">别人的桌面工具怎么处理权限</span>
           </div>
         </div>
       </aside>

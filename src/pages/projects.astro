@@ -5,16 +5,15 @@ import { featured, projects, followedProjects, site } from '../data/site';
 ---
 <BaseLayout
   title="作品"
-  description="颐安的项目：桌面助手小爪、AI 桌面操作员、DeepSeek Agent GUI、文生视频，每条都写了问题、方案、结果和反思。"
+  description="颐安学习 AI Agent 时做过的项目，重点是小爪助手，也记录桌面工具和视频实验中的返工过程。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
       <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">作品</span></nav>
       <span class="eyebrow">作品</span>
-      <h1>我做过什么，以及踩了什么坑</h1>
-      <p class="lead">
-        主推项目按 <b class="muted">问题</b> → <b class="muted">方案</b> → <b class="muted">结果</b> → <b class="muted">反思</b> 写全；
-        其他项目有各自的「为什么做」和「做完想通了什么」。反思那一段最有用，因为它是下次不会再犯的部分。
+        <h1>学习 Agent 时做过的东西</h1>
+        <p class="lead">
+          这里放我真正写过、改过、返工过的项目。比起把功能列满，我更愿意留下当时为什么这么做，以及后来哪里证明做错了。
       </p>
     </div>
   </section>
@@ -34,19 +33,19 @@ import { featured, projects, followedProjects, site } from '../data/site';
 
           <div class="case" style="margin-top:1.3rem">
             <div class="case__row">
-              <span class="case__key">问题</span>
+              <span class="case__key">起因</span>
               <span class="case__val">{p.problem}</span>
             </div>
             <div class="case__row">
-              <span class="case__key">方案</span>
+              <span class="case__key">做法</span>
               <span class="case__val">{p.approach}</span>
             </div>
             <div class="case__row">
-              <span class="case__key">结果</span>
+              <span class="case__key">现在</span>
               <span class="case__val" set:html={p.result} />
             </div>
             <div class="case__row">
-              <span class="case__key">反思</span>
+              <span class="case__key">回头看</span>
               <span class="case__val">{p.lesson}</span>
             </div>
           </div>
@@ -65,8 +64,8 @@ import { featured, projects, followedProjects, site } from '../data/site';
     <div class="wrap">
       <div class="section__head" data-reveal>
         <span class="eyebrow">其他作品</span>
-        <h2>三个做完之后有结论的项目</h2>
-        <p class="lead">每个都写清楚「为什么做」和「做完想通了什么」 —— 比功能清单更值得记。</p>
+        <h2>其他做过的项目</h2>
+        <p class="lead">有些项目不大，但各自留下了一点具体的经验。</p>
       </div>
 
       <div class="stack gap-md">
@@ -85,7 +84,7 @@ import { featured, projects, followedProjects, site } from '../data/site';
               </ul>
               <div class="callout">
                 <span aria-hidden="true"><Icon name="spark" size={18} /></span>
-                <div><b>做完的结论</b><br />{p.note}</div>
+                <div><b>我留下的备注</b><br />{p.note}</div>
               </div>
             </div>
 
@@ -103,9 +102,9 @@ import { featured, projects, followedProjects, site } from '../data/site';
   <section class="section section--tight">
     <div class="wrap">
       <div class="section__head" data-reveal>
-        <span class="eyebrow">我关注的</span>
-        <h2>关注过的开源项目</h2>
-        <p class="lead">下面这些 <strong>不是我的作品</strong> —— 是我学习阶段关注过的项目，fork 到自己账号里方便查阅，署名与版权属于原作者。列在这里，也算给「我早期在看什么」一个交代。</p>
+        <span class="eyebrow">关注过的项目</span>
+        <h2>以前关注过的项目（不是我的作品）</h2>
+        <p class="lead">下面这些 <strong>不是我的作品</strong>，是我学习阶段关注过、克隆或保存到账号里方便查阅的项目。署名和版权都属于原作者。</p>
       </div>
 
       <div class="list" data-reveal>
@@ -128,8 +127,8 @@ import { featured, projects, followedProjects, site } from '../data/site';
   <section class="section section--tight">
     <div class="wrap">
       <div class="cta" data-reveal>
-        <h2>想聊细节？</h2>
-        <p>这些项目里真正有意思的是取舍过程 —— 为什么这么设计、当时纠结了什么，欢迎直接来问。</p>
+        <h2>想看源码或聊细节？</h2>
+        <p>可以从 GitHub 或笔记开始。如果你也在做类似的桌面工具，欢迎直接写信。</p>
         <div class="btn-row" style="justify-content:center">
           <a class="btn btn--primary" href={site.github} target="_blank" rel="me noopener"><Icon name="github" size={16} />GitHub</a>
           <a class="btn" href="/blog">看踩坑笔记 <Icon name="arrow" cls="btn__icon" /></a>
