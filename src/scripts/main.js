@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    个人网站  交互脚本（原生 JS，无依赖）
    1 主题切换  2 导航  3 入场动画  4 卡片跟随光  5 复制邮箱  6 阅读进度
    ========================================================================== */
@@ -105,7 +105,7 @@
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       var text = btn.getAttribute('data-copy');
-      var done = function () { toast('邮箱 ' + text + ' 已复制 '); };
+      var done = function () { toast('已复制：' + text); };
       if (navigator.clipboard && location.protocol !== 'file:') {
         navigator.clipboard.writeText(text).then(done).catch(function () { window.location.href = 'mailto:' + text; });
       } else {

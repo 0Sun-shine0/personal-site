@@ -1,48 +1,77 @@
-# 林默的个人网站
+# 颐安的个人网站
 
-纯静态个人站点：**Astro 7 + 手写 CSS**，没有前端框架、没有运行时依赖、没有任何分析脚本。
+纯静态个人站点：**Astro 7 + 手写 CSS**，没有前端框架、没有运行时依赖、没有分析脚本。
 构建产物是纯 HTML/CSS/JS，扔到任何静态托管上都能跑。
 
-## 这个站有什么
+站点主人：颐安（真名马靖凯） GitHub [@0Sun-shine0](https://github.com/0Sun-shine0)
+
+## 站点内容从哪来
+
+内容不是占位符，全部对着真实仓库写的：
+
+| 来源 | 用在哪 |
+| --- | --- |
+| GitHub 全部 12 个仓库（名称、语言、star、README） | 作品页的项目卡片、早期作品列表 |
+| 本地 `PawPet` 仓库（v2.4.0，81 次提交）的 README 与 `docs/` | 主推作品四段式、关于页、现在页、装备页 |
+| PawPet README 的「五个踩过的坑」+ `docs/评审-小爪AI-Agent层.md` | 5 篇笔记（点击穿透 / BOM 数据丢失 / 权限审批链 / token 成本 / 打包发布） |
+
+> **发布前请通读这 5 篇笔记。** 它们是从你自己项目的 README 和评审文档里整理成文的，
+> 技术细节都来自源码和文档，但**行文口吻是我按「第一人称作者」写的**  如果某些
+> 结论或细节你想改，直接改 `src/posts/*.md` 就行。
+
+## 页面
 
 | 页面 | 路径 | 内容 |
 | --- | --- | --- |
-| 首页 | `/` | 一句话定位、数据统计、代码窗口、精选作品、最新文章 |
-| 作品 | `/projects` | 3 个案例，按「问题  方案  结果  反思」四段式写 |
-| 文章列表 | `/blog` | 按时间排序，带标签 |
-| 文章详情 | `/blog/<slug>` | 目录、阅读进度条、代码高亮、表格、结尾引导 |
-| 关于 | `/about` | 经历时间线、我在关心什么、我不会什么 |
+| 首页 | `/` | 一句话定位、三个数字、代码窗口（审批链）、跑马灯、作品、最新笔记 |
+| 作品 | `/projects` | 主推项目四段式 + 4 个其他作品 + 4 条早期作品 |
+| 笔记列表 | `/blog` | 按时间排序，带标签 |
+| 笔记详情 | `/blog/<slug>` | 目录、阅读进度条、代码高亮、表格 |
+| 关于 | `/about` | 时间线（2018  2026）、我在关心什么、我不会什么 |
 | 现在 | `/now` | 这个月在忙什么（三个月更新一次即可） |
-| 装备 | `/uses` | 硬件、编辑器、技术栈、日常工具 |
+| 装备 | `/uses` | 语言框架、运行环境、编辑器、打包发布 |
 | 404 | `/404.html` | 自定义缺省页 |
 
-体验上的细节：深浅色跟随系统并可手动切换（无闪烁）、移动端抽屉导航、滚动出现动画、
-卡片鼠标跟随光、一键复制邮箱、RSS 订阅、sitemap、Open Graph 卡片。
+体验细节：深浅色跟随系统并可手动切换（无闪烁）、移动端抽屉导航、滚动出现动画、
+卡片鼠标跟随光、一键复制、RSS、sitemap、Open Graph 卡片。
 
 ## 快速开始
 
 ```bash
 npm install
-npm run build      # 生成到 dist/
+npm run build      # 生成到 dist/（12 秒）
 npm run preview    # 本地预览 dist/（默认 http://localhost:4321）
 ```
 
-改了内容之后想看效果，就是这两步：`npm run build && npm run preview`（构建只要 12 秒）。
-
-部署到 Cloudflare Pages / Vercel / Netlify 时：
+部署到 Cloudflare Pages / Vercel / Netlify / GitHub Pages 时：
 
 - **构建命令**：`npm run build`
 - **输出目录**：`dist`
 
-上线前记得把 `astro.config.mjs` 里的 `site`、`public/robots.txt` 里的 Sitemap 地址、
-以及 `src/data/site.ts` 里的邮箱和域名换成你自己的。
+## 上线前必须改的三处
+
+1. **邮箱**：`src/data/site.ts` 里的 `email`（现在是占位符 `hello@example.com`）。
+2. **站点地址**：`astro.config.mjs` 的 `site`（现在是 `https://0sun-shine0.github.io`）。
+   它决定 sitemap / RSS / canonical 里的绝对链接。
+   - 用 GitHub Pages 用户主页：仓库名必须是 `0Sun-shine0.github.io`，现有值即可；
+   - 用**项目页**（仓库名是别的）：地址变成 `https://0sun-shine0.github.io/<仓库名>/`，
+     除了改 `site` 还要加 `base: '/<仓库名>'`；
+   - 用 Cloudflare Pages / Vercel / 自己的域名：换成对应地址。
+3. **`public/robots.txt`** 里的 Sitemap 地址同步改成真实域名。
+
+## 建议补的两处
+
+- **头像**：现在首页/关于页用的是首字母色块（`.avatar` / `.brand__mark` 显示 `YA`）。
+  真人照片的可信度会明显更高  图片放 `public/`，然后把对应标签换成 `<img>`。
+- **OG 分享图**：`public/og-cover.svg` 现在是 SVG。微信和 X 对 SVG 支持不一致，
+  建议导出成 1200630 的 PNG，然后改 `src/layouts/BaseLayout.astro` 里的文件名。
 
 ## 目录结构
 
 ```
 src/
- data/site.ts             站点配置：名字、邮箱、社交、作品、跑马灯标签
- posts/*.md               文章（Markdown，frontmatter 见下）
+ data/site.ts             站点配置：名字、邮箱、作品、笔记标签，全部内容都在这里
+ posts/*.md               笔记（Markdown，frontmatter 见下）
  pages/
     index.astro         首页
     projects.astro      作品
@@ -52,70 +81,59 @@ src/
     404.astro           缺省页
     rss.xml.ts          RSS 输出
     blog/
-        index.astro     文章列表
-        [...slug].astro 文章详情路由
+        index.astro     笔记列表
+        [...slug].astro 笔记详情路由
  layouts/
     BaseLayout.astro    <head>、meta、导航、页脚
     PostLayout.astro    文章页骨架（目录 + 进度条）
  components/             Nav / Footer / Icon
  styles/global.css       全部样式（设计变量在文件开头）
  scripts/main.js         交互脚本（主题、抽屉、动画、复制、进度条）
+ shims/picomatch.mjs     给 Vite 用的 ESM 垫片（见文末）
 public/                     favicon.svg / og-cover.svg / robots.txt
 scripts/fix-env-plugin.mjs  受限环境的构建适配（见文末）
 ```
 
 ## 怎么改内容
 
-### 1. 站点配置
+### 写一篇新笔记
 
-`src/data/site.ts`  名字、职位、一句话定位、邮箱、GitHub、X、跑马灯关键词、
-首页统计数字、以及三个作品案例，全部在这里改。
-
-### 2. 写一篇文章
-
-在 `src/posts/` 新建 `.md` 文件（文件名就是 URL）：
+在 `src/posts/` 新建 `.md`（文件名就是 URL）：
 
 ```markdown
 ---
 title: 你的标题（尽量写成别人会搜的样子）
 description: 一句话摘要，会出现在列表页、搜索引擎和 OG 卡片上
-date: 2026-09-20
-tags: [Go, 性能]
-minutes: 8
+date: 2026-09-27
+tags: [打包发布, PyInstaller]
+minutes: 9
 ---
 
-正文用 Markdown 写。标题会自动生成目录，代码块自动高亮，表格有样式。
+正文用 Markdown 写。`##` 标题会自动生成目录，代码块自动高亮，表格有样式。
 ```
 
-### 3. 换图标和分享图
+### 改作品
 
-`public/favicon.svg` 和 `public/og-cover.svg`。OG 图建议换成 1200630 的 PNG
-（微信、X 对 SVG 支持不一致），换完把 `src/layouts/BaseLayout.astro` 里的
-`/og-cover.svg` 改成新文件名。
+`src/data/site.ts` 里有三块：
 
-### 4. 改配色
+- `featured`：主推项目，字段是四段式（`problem` / `approach` / `result` / `lesson`）；
+- `projects`：其他作品，字段是 `subtitle` / `points` / `note` / `stat`；
+- `earlyWork`：早期作品，一行一条。
+
+### 改配色
 
 `src/styles/global.css` 开头的 `:root` 变量：`--brand`、`--brand-2` 决定主渐变，
 `--bg` 系列决定底色。改两行就能换整个站的调性。
 
-## 本地环境的两点说明
-
-这个工作区是受管控环境，有两个坑已经绕过，记录下来免得以后困惑：
+## 本地环境的两点说明（受管控环境特有）
 
 1. **构建**：环境禁止 node 创建带管道的子进程（`spawn EPERM`），而 Astro 的 env 插件
-   要用 esbuild 的子进程做 define 替换。`npm run build` 之前的 `prebuild` 钩子会执行
-   `scripts/fix-env-plugin.mjs`，在检测到该限制时把这一步换成等价的纯 JS 实现；
-   在正常机器上它什么都不做（会打印「子进程可用，无需补丁」）。
-2. **`npm run dev`（带热更新的开发服务器）在当前环境下不可用**：Vite 的 dev
-   module runner 会把某些 CJS 依赖内联进 ESM 环境执行，报
+   要用 esbuild 的子进程做 define 替换。`npm run build` 之前的 `prebuild` 钩子会跑
+   `scripts/fix-env-plugin.mjs`，检测到该限制时把这一步换成等价的纯 JS 实现；
+   **在正常机器上它会自动跳过**（打印「子进程可用，无需补丁」）。
+2. **`npm run dev` 在受管控环境下不可用**：Vite 的 dev module runner 会把
+   `picomatch`、`eventemitter3` 这类 CJS 依赖内联进 ESM 执行，报
    `require is not defined` / `Class extends value undefined`。
-   这是工具链与受限环境的兼容问题，不影响构建产物。
+   `astro.config.mjs` 里的 `vite.resolve.alias` 已把 `picomatch` 指向 ESM 垫片，
+   但后面还有别的 CJS 包，属于工具链兼容问题。
    **改完内容用 `npm run build && npm run preview` 看效果即可**（构建 12 秒）。
-
-## 待办（上线前）
-
-- [ ] `src/data/site.ts` 换成你自己的信息（邮箱、GitHub、X、作品）
-- [ ] `astro.config.mjs` 改 `site` 为真实域名
-- [ ] `public/robots.txt` 里的 sitemap 地址改成真实域名
-- [ ] 首页 `.avatar` 换成真人照片（现在用的是首字母色块）
-- [ ] OG 图换成 PNG，提交到 Google Search Console / Bing 站长工具

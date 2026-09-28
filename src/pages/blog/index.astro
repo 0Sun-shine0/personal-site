@@ -22,16 +22,16 @@ const allTags = [...new Set(posts.flatMap((p) => p.tags))];
 ---
 <BaseLayout
   title="文章"
-  description="后端实战笔记：性能排查、数据库优化、值班流程，都是能直接抄的步骤。"
+  description="颐安的踩坑笔记：桌面开发与打包发布、Agent 的权限与成本设计、数据可靠性。都是在一个真实项目里撞出来的问题。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
       <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">文章</span></nav>
       <span class="eyebrow">技术笔记</span>
-      <h1>{posts.length} 篇笔记，全部来自真实踩坑</h1>
+      <h1>{posts.length} 篇笔记，全部来自一个真实项目</h1>
       <p class="lead">
-        不写「从零实现」系列，只写我实际遇到的问题、怎么定位的、最后怎么解决的。
-        每篇都尽量给出可以直接照抄的命令和配置。
+        不写「从零实现」系列，只写我在做桌面助手和 Agent 时真的撞上的问题：怎么定位、怎么改、改完想通了什么。
+        每篇都给到能直接照抄的代码和判断标准。
       </p>
       <div class="meta-row" style="margin-top:.6rem">
         {allTags.map((t) => <span class="tag">{t}</span>)}

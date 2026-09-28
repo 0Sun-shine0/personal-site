@@ -4,27 +4,30 @@ import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
 
 const timeline = [
-  { when: '2024  现在', what: '支付公司  后端 Tech Lead', desc: '带 5 人小组做清结算，把对账和费率服务从「能跑」推到「敢在大促跑」。' },
-  { when: '2021  2024', what: '量化交易公司  高级后端', desc: '撮合引擎与行情分发，第一次把 P99 从两位数毫秒压到个位数。' },
-  { when: '2018  2021', what: '电商公司  后端工程师', desc: '订单与库存，学会了在业务压力下做取舍，也第一次被线上事故教育。' },
-  { when: '2018 之前', what: '从 PHP 商城和一堆脚本开始', desc: '自学进这行，最早写的是给亲戚店铺用的进销存。' },
+  { when: '2026-09', what: '小爪助手 v2.4（进行中）', desc: '常驻桌面的小助手：离线四件套 + 可选 AI。14 天 81 次提交推到 v2.4.0，现在在解决「让完全不折腾电脑的人也能装完就用」。' },
+  { when: '2026-05', what: 'DeepSeek Reasonix GUI', desc: '给 DeepSeek 原生的编程 Agent 套了个 Electron 桌面界面，5 stars。做完想通一件事：GUI 复刻 CLI 的能力清单，性价比不高。' },
+  { when: '2026-02', what: '文生视频与一批小工具', desc: 'T2Video-DCOT（动态思维链文生视频）、C 盘清理脚本、R 语言的统计实验，同一段时间里连着做完的。' },
+  { when: '2024-06', what: '第一次让 AI 操作电脑', desc: 'AI 智能桌面操作员：DeepSeek 拆任务、CNN 看屏幕、PyAutoGUI 动键鼠。识别做得还行，但没回答「用户凭什么敢把键鼠交出去」。' },
+  { when: '2022-2023', what: '后端与课程项目', desc: 'hd_django_sever（Django 小程序后端基础架构）、OnlineBooks（JSP + Servlet + MySQL 图书管理）。' },
+  { when: '2018', what: '从 Java 课设开始', desc: 'LibraryManager，Java AWT + Access，还得用 32 位 JDK 才跑得起来。那是我第一个仓库。' },
 ];
 
-const nowItems = [
-  '把一套跑了 5 年的对账任务拆成可并行的分片，目标是凌晨 2 点前一定跑完。',
-  '在团队里推「变更即记录」：每次上线留下可回滚的说明，事故复盘时能少吵一半架。',
-  '读 Rust 的 async 运行时实现，纯粹好奇  还没打算在生产里用。',
+const concerns = [
+  '让「不折腾电脑的人」也能装完就用：安装包双击、下一步、完成，不需要装 Python，也不需要先搞一个 API Key。',
+  '权限怎么分级才让人敢用：日常操作别烦我，但「装一段新代码」永远要问  这两件事不该是同一个开关。',
+  '成本看得见：一张截图在上下文里是几万 token，所以「少截几张」本身就是功能，不是优化。',
+  '数据是用户的：本地优先、原子写、备份、能导出、能导入、卸载时默认保留。',
 ];
 ---
 <BaseLayout
   title="关于"
-  description="林默，后端工程师，8 年经验，做交易、清算、对账系统。这里写我的经历、我在关心什么，以及我不会什么。"
+  description="颐安（马靖凯），AI 应用开发。做过 AI 操作电脑、文生视频、Agent 图形界面，最近在做桌面助手小爪。这里写我的来路、我在关心什么，以及我不会什么。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
       <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">关于</span></nav>
       <span class="eyebrow">关于</span>
-      <h1>我是林默，后端工程师</h1>
+      <h1>我是颐安，真名马靖凯</h1>
       <p class="lead">{site.intro}</p>
     </div>
   </section>
@@ -35,56 +38,64 @@ const nowItems = [
         <div class="about-head">
           <div class="avatar" aria-hidden="true">{site.initials}</div>
           <div class="stack gap-xs">
-            <span class="mono faint">{site.location}  {site.status}</span>
+            <span class="mono faint">{site.status}</span>
             <p style="margin:0">
-              做后端 8 年，主要和 Go、PostgreSQL、Kafka 打交道。
-              长期关注一件事：让系统在流量最大的那天也保持可预测。
+              主要用 <b>Python</b> 和 <b>TypeScript</b>。做过桌面端（PySide6 / Qt Quick、Electron + React）、
+              Agent 工具链、文生视频，也写过 Django 后端和 Java 课设。
             </p>
           </div>
         </div>
 
         <h2>我怎么走到这个方向的</h2>
         <p>
-          最早我是给自己家店的进销存写脚本，那时候只知道「能跑就行」。
-          后来一次大促，订单服务在流量峰值上把数据库连接打满，我盯着监控图看了四个小时 
-          那是我第一次意识到，<strong>性能问题很少是「某个函数慢」，更多是资源在错误的地方排队</strong>。
+          最早是 Java 课设和图书管理系统，后来写 Django 后端脚手架、帮同学写抢课脚本。
+          2024 年我第一次做「让 AI 操作电脑」：DeepSeek 拆解任务、CNN 看屏幕、PyAutoGUI 去点鼠标键盘。
         </p>
         <p>
-          从那以后我开始系统学 profiling、GC 行为和数据库执行计划。
-          转到交易系统之后，这套东西变成了日常：延迟预算是硬约束，慢 10 毫秒就是真金白银。
+          那次做完我以为瓶颈是「模型看不看得懂屏幕」。后来发现不是 
+          真正卡住我的是一个更朴素的问题：<strong>用户凭什么敢把键鼠交出去？</strong>
+          识别率再高，只要用户不敢按下「允许」，这套东西就永远只能待在我的机器上。
+        </p>
+        <p>
+          这个念头一直在长。到了 2026 年做大模型应用，它变成了同一件事的不同侧面：
+          权限分级、审批卡片、审计日志、失败能不能自纠、数据会不会丢。
+          我开始更在意「一个人第一次打开它，会不会卡住」而这件事跟模型能力几乎无关。
         </p>
 
         <h2>我现在关心的问题</h2>
         <ul>
-          {nowItems.map((t) => <li>{t}</li>)}
+          {concerns.map((t) => <li>{t}</li>)}
         </ul>
 
         <h2>我不会什么</h2>
         <p>
-          前端框架我写得很糟，React 只会到「能改组件」的程度；
-          Kubernetes 我是「会用不会调」，出网络问题基本靠同事；
-          Rust 还在读代码阶段，没写过能上生产的程序。
-          写出来是为了让你知道，找我聊后端比聊前端有用得多。
+          我不写 Rust；前端的 React 只到「能拼出界面、调通 IPC」的程度，做不了精致的视觉设计 
+          小爪的界面是靠 QML 一点点调到顺眼的；我没做过高并发分布式系统，我的项目基本都是单机工具；
+          R 只是拿来跑统计脚本，不是研究用的水平。
+        </p>
+        <p>
+          写出来是为了让你知道：找我聊桌面工具、Agent 权限设计和打包发布，比聊分布式架构有用得多。
         </p>
 
         <div class="callout">
           <span aria-hidden="true"><Icon name="spark" size={18} /></span>
           <div>
-            <b>我的工作方式</b><br />
-            先量再改、改动尽量小、能回滚优先。遇到分歧就用数据压测一次，谁的方案数字好就用谁的。
+            <b>我的做事方式</b><br />
+            先承认「用户第一次打开会卡在哪」，再决定加什么、藏什么。
+            小爪的路线图里我写过一句：<strong>该做的减法，才是提升留存最快的动作。</strong>
           </div>
         </div>
 
         <h2>这个站在写什么</h2>
         <p>
-          主要写三类东西：踩过的坑和排查过程、项目复盘、以及我对工程实践的看法。
-          如果你也在维护一套年久失修的系统，希望这里的笔记能帮你省几个通宵。
+          主要写三类东西：桌面开发与打包发布的坑、Agent 的权限与成本设计、
+          以及一个项目做完之后真正想通了什么。如果你也在做类似的东西，希望这些笔记能帮你少走一遍。
         </p>
       </div>
 
       <aside class="side">
         <div class="card">
-          <span class="eyebrow">经历</span>
+          <span class="eyebrow">时间线</span>
           <div class="timeline" style="margin-top:1.2rem">
             {timeline.map((t) => (
               <div class="timeline__item">
@@ -98,17 +109,14 @@ const nowItems = [
 
         <div class="card">
           <span class="eyebrow">联系我</span>
-          <p style="margin:.7rem 0 1rem">最直接的方式是邮件，我基本当天回。</p>
+          <p style="margin:.7rem 0 1rem">GitHub 上一般能找到我，Issue 和邮件都会看。</p>
           <div class="stack gap-sm">
+            <a class="btn btn--sm" href={site.github} target="_blank" rel="me noopener">
+              <Icon name="github" size={14} />@0Sun-shine0
+            </a>
             <button class="btn btn--sm" type="button" data-copy={site.email}>
               <Icon name="copy" size={14} />{site.email}
             </button>
-            <a class="btn btn--sm" href={site.github} target="_blank" rel="me noopener">
-              <Icon name="github" size={14} />GitHub
-            </a>
-            <a class="btn btn--sm" href={site.x} target="_blank" rel="me noopener">
-              <Icon name="x" size={14} />X / Twitter
-            </a>
           </div>
         </div>
       </aside>

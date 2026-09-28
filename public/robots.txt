@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://linmo.dev/sitemap-index.xml
+Sitemap: https://0sun-shine0.github.io/sitemap-index.xml

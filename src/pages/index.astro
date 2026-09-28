@@ -1,31 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { site, stats, techStack, projects, fmtDate } from '../data/site';
+import { site, stats, techStack, featured, projects, fmtDate } from '../data/site';
 
 const mods = import.meta.glob('../posts/*.md', { eager: true }) as Record<string, any>;
 const posts = Object.entries(mods)
-  .map(([path, m]) => ({
-    slug: path.split('/').pop()!.replace(/\.md$/, ''),
-    ...m.frontmatter,
-  }))
+  .map(([p, m]) => ({ slug: p.split('/').pop()!.replace(/\.md$/, ''), ...m.frontmatter }))
   .sort((a, b) => +new Date(b.date) - +new Date(a.date))
   .slice(0, 4);
 
-// 首屏代码窗口（写成字符串，避免模板把 Go 的花括号当成表达式）
+// 首屏代码窗口：审批链的第一行（示意，实际在 pawpet/ai/tools.py）
 const snippet = [
-  '<span class="tk-com">// 撮合主循环：热路径零分配</span>',
-  '<span class="tk-key">func</span> <span class="tk-punc">(</span>e <span class="tk-punc">*</span>Engine<span class="tk-punc">)</span> <span class="tk-fn">Run</span><span class="tk-punc">()</span> <span class="tk-punc">{</span>',
-  '    <span class="tk-key">for</span> <span class="tk-punc">{</span>',
-  '        <span class="tk-key">select</span> <span class="tk-punc">{</span>',
-  '        <span class="tk-key">case</span> od <span class="tk-punc">:=</span> <span class="tk-punc">&lt;-</span>e<span class="tk-punc">.</span>orders<span class="tk-punc">:</span>   <span class="tk-com">// 无锁环形队列</span>',
-  '            e<span class="tk-punc">.</span><span class="tk-fn">match</span><span class="tk-punc">(</span>od<span class="tk-punc">)</span>',
-  '        <span class="tk-key">case</span> <span class="tk-punc">&lt;-</span>e<span class="tk-punc">.</span>quit<span class="tk-punc">:</span>',
-  '            <span class="tk-key">return</span>',
-  '        <span class="tk-punc">}</span>',
-  '    <span class="tk-punc">}</span>',
-  '<span class="tk-punc">}</span>',
+  '<span class="tk-com"># ai/tools.py  审批链的第一行</span>',
+  '<span class="tk-key">def</span> <span class="tk-fn">needs_approval</span><span class="tk-punc">(</span>self<span class="tk-punc">,</span> action<span class="tk-punc">,</span> level<span class="tk-punc">)</span> <span class="tk-punc">-&gt;</span> <span class="tk-key">bool</span><span class="tk-punc">:</span>',
+  '    <span class="tk-key">if</span> action<span class="tk-punc">.</span>risk <span class="tk-key">is</span> Risk<span class="tk-punc">.</span>CRITICAL<span class="tk-punc">:</span>',
+  '        <span class="tk-key">return</span> <span class="tk-num">True</span>   <span class="tk-com"># 装工具 / 跑自定义代码</span>',
+  '                     <span class="tk-com"># 写在后面等于没写</span>',
+  '    <span class="tk-key">if</span> level <span class="tk-key">is</span> Level<span class="tk-punc">.</span>FULL<span class="tk-punc">:</span>',
+  '        <span class="tk-key">return</span> <span class="tk-num">False</span>  <span class="tk-com"># 「完全自动」只免掉日常操作</span>',
+  '    <span class="tk-key">return</span> action<span class="tk-punc">.</span>mutates     <span class="tk-com"># 只读的不问你</span>',
 ].join('\n');
+
+const total = featured.length + projects.length;
 ---
 <BaseLayout>
   <!-- 首屏 -->
@@ -33,7 +29,7 @@ const snippet = [
     <div class="wrap hero__grid">
       <div class="hero__copy">
         <span class="pill">
-          <span class="dot" aria-hidden="true"></span>{site.status}  {site.location}
+          <span class="dot" aria-hidden="true"></span>{site.status}
         </span>
 
         <h1>
@@ -45,9 +41,9 @@ const snippet = [
 
         <div class="btn-row">
           <a class="btn btn--primary" href="/projects">看看我做过什么 <Icon name="arrow" cls="btn__icon" /></a>
-          <a class="btn" href="/blog">读技术笔记</a>
-          <button class="btn" type="button" data-copy={site.email}>
-            <Icon name="copy" size={15} />复制邮箱
+          <a class="btn" href="/blog">读踩坑笔记</a>
+          <button class="btn" type="button" data-copy={site.github}>
+            <Icon name="github" size={15} />GitHub
           </button>
         </div>
 
@@ -66,18 +62,18 @@ const snippet = [
         <div class="codewin">
           <div class="codewin__bar">
             <span class="codewin__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="codewin__file">engine/hotpath.go</span>
+            <span class="codewin__file">pawpet/ai/tools.py</span>
           </div>
           <pre><code set:html={snippet} /></pre>
         </div>
 
         <div class="float-card float-card--a">
           <span class="float-card__ico" aria-hidden="true"></span>
-          <span>P99 <b>38ms  4.2ms</b></span>
+          <span>待办 / 番茄钟 <b>完全离线</b></span>
         </div>
         <div class="float-card float-card--b">
           <span class="float-card__ico" aria-hidden="true"></span>
-          <span>GC 停顿 <b>-97%</b></span>
+          <span>安装包 <b>约 120MB</b>，双击即用</span>
         </div>
       </div>
     </div>
@@ -93,22 +89,23 @@ const snippet = [
     </div>
   </div>
 
-  <!-- 精选作品 -->
+  <!-- 主推作品 -->
   <section class="section">
     <div class="wrap">
       <div class="section__head section__head--row" data-reveal>
         <div class="stack gap-sm">
-          <span class="eyebrow">精选作品</span>
-          <h2>解决问题的记录，不只是截图</h2>
+          <span class="eyebrow">主推作品</span>
+          <h2>小爪助手：一只会干活的小宠物</h2>
           <p class="lead">
-            每个项目都写清楚：谁遇到了什么麻烦、我做了什么决策、数字变成了多少、哪里还能做得更好。
+            宠物只是它的脸。真正在干活的是待办、番茄钟、提醒、便签  完全离线、不用注册、数据只存本机。
+            AI（看屏幕、替你点键鼠）是可选加成，配不配 API Key 都完整可用。
           </p>
         </div>
-        <a class="btn btn--sm" href="/projects">全部作品 <Icon name="arrow" cls="btn__icon" /></a>
+        <a class="btn btn--sm" href="/projects">全部 {total} 个项目 <Icon name="arrow" cls="btn__icon" /></a>
       </div>
 
       <div class="case-grid">
-        {projects.map((p, i) => (
+        {featured.map((p, i) => (
           <article class="card" data-reveal style={`--d:${i * 90}ms`}>
             <div class="card__top">
               <span class="card__idx">{p.idx}  {p.tags[0]}</span>
@@ -127,19 +124,34 @@ const snippet = [
             </div>
           </article>
         ))}
+
+        {projects.slice(0, 3).map((p, i) => (
+          <article class="card" data-reveal style={`--d:${(i + 1) * 90}ms`}>
+            <div class="card__top">
+              <span class="card__idx">{p.idx}  {p.stack[0]}</span>
+              <a class="card__link" href={`/projects#p${p.idx}`}>看看这个 <Icon name="arrow" cls="btn__icon" /></a>
+            </div>
+            <h3>{p.title}</h3>
+            <p>{p.subtitle}</p>
+            <div class="case__metric" style="margin-top:1.1rem">
+              <span class="tag tag--brand">{p.stat}</span>
+              {p.stack.slice(1).map((s) => <span class="tag">{s}</span>)}
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- 最新文章 -->
+  <!-- 最新笔记 -->
   <section class="section section--tight">
     <div class="wrap">
       <div class="section__head section__head--row" data-reveal>
         <div class="stack gap-sm">
-          <span class="eyebrow">技术笔记</span>
-          <h2>踩过的坑，写成能直接抄的步骤</h2>
+          <span class="eyebrow">踩坑笔记</span>
+          <h2>踩过的坑，写成能直接抄的做法</h2>
         </div>
-        <a class="btn btn--sm" href="/blog">全部文章 <Icon name="arrow" cls="btn__icon" /></a>
+        <a class="btn btn--sm" href="/blog">全部笔记 <Icon name="arrow" cls="btn__icon" /></a>
       </div>
 
       <div class="list" data-reveal>
@@ -163,11 +175,11 @@ const snippet = [
   <section class="section section--tight">
     <div class="wrap">
       <div class="cta" data-reveal>
-        <h2>有项目想聊，或者只是想交流技术？</h2>
-        <p>我正在看后端 / 基础设施方向的机会，也乐意听你讲讲你手上那套系统。</p>
+        <h2>也在做桌面工具，或者想聊 Agent 设计？</h2>
+        <p>权限怎么分级、什么时候该合并确认、打包怎么少踩坑  这些我都踩过一遍，欢迎来交换经验。</p>
         <div class="btn-row" style="justify-content:center">
-          <a class="btn btn--primary" href={`mailto:${site.email}`}><Icon name="mail" size={16} />写信给我</a>
-          <button class="btn" type="button" data-copy={site.email}><Icon name="copy" size={15} />复制邮箱</button>
+          <a class="btn btn--primary" href={site.github} target="_blank" rel="me noopener"><Icon name="github" size={16} />去 GitHub 找我</a>
+          <a class="btn" href={`mailto:${site.email}`}><Icon name="mail" size={15} />写邮件</a>
         </div>
       </div>
     </div>

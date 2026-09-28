@@ -505,3 +505,10 @@ html[data-theme="dark"] .ico-sun{display:none}
   .about-head{gap:1.1rem}
   .article th,.article td{padding:.6rem .55rem;font-size:.88rem}
 }
+/* 12  点列表（作品卡片里用）  */
+.dot-list{display:grid;gap:.5rem;padding:0;margin:0;list-style:none}
+.dot-list li{position:relative;padding-left:1.15rem;color:var(--muted);font-size:.92rem;line-height:1.6}
+.dot-list li::before{
+  content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:2px;
+  background:var(--brand);transform:rotate(45deg);
+}

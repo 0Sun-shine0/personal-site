@@ -6,13 +6,12 @@ const year = new Date().getFullYear();
 <footer class="foot">
   <div class="wrap foot__grid">
     <div class="stack gap-xs">
-      <span class="mono faint"> {year} {site.name}  {site.location}  用 Astro 构建</span>
-      <span class="mono faint">想到什么就写下来，比等一个完美的选题更重要。</span>
+      <span class="mono faint"> {year} {site.name}（{site.realName}）  用 Astro 构建</span>
+      <span class="mono faint">装完就能用，比功能多更重要。</span>
     </div>
 
     <nav class="foot__links" aria-label="社交与订阅">
       <a href={site.github} target="_blank" rel="me noopener"><Icon name="github" size={15} />GitHub</a>
-      <a href={site.x} target="_blank" rel="me noopener"><Icon name="x" size={15} />X</a>
       <a href="/rss.xml"><Icon name="rss" size={15} />RSS</a>
       <button class="btn btn--sm" type="button" data-copy={site.email}>
         <Icon name="copy" size={14} />{site.email}

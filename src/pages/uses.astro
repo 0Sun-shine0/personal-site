@@ -1,49 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { site } from '../data/site';
-
 const groups = [
   {
-    title: '硬件',
+    title: '语言与框架',
     rows: [
-      ['笔记本', '<b>MacBook Pro 14" M4 Pro</b>，32G 内存。公司配的，够用。'],
-      ['显示器', 'Dell U2723QE，4K 27 寸，竖屏放日志。'],
-      ['键盘', 'HHKB Pro Hybrid Type-S。安静版，办公室里不会被同事打。'],
+      ['主力语言', '<b>Python</b>（桌面与 AI 工具）和 <b>TypeScript</b>（Electron 桌面端）。'],
+      ['桌面 UI', '<b>PySide6 + Qt Quick / QML</b>。GPU 渲染的矢量画面，真圆角真阴影，60fps 缓动。'],
+      ['Web 技术', 'Electron + React + Vite，用来做 Agent 的图形界面。'],
+      ['脚本', '<b>PowerShell</b> 写 Windows 上的自动化；R 只用来跑统计脚本。'],
+      ['早期', 'Django（小程序后端脚手架）、Java（课设时代的 JSP / AWT）。'],
     ],
   },
   {
-    title: '开发环境',
+    title: '运行环境',
     rows: [
-      ['编辑器', '<b>Neovim</b> 写小改动和读源码，<b>GoLand</b> 做大重构  两边都在用，不站队。'],
-      ['终端', 'tmux + starship，主题尽量素。'],
-      ['Shell', 'Windows 上 PowerShell 7，服务器上 zsh。'],
-      ['字体', 'JetBrains Mono + 等距更纱黑体。'],
+      ['系统', 'Windows 11。开发、打包、发布都在这一台机器上。'],
+      ['Python', '3.12（项目自带 <code>.venv</code> 隔离，绝不装进全局）；本机另有 3.14 用于随手脚本。'],
+      ['依赖哲学', '小爪助手的运行依赖<b>只有一个</b>：PySide6-Essentials。依赖越少，装完就能用的概率越高。'],
+      ['Node', 'v24，只服务于 Electron / 前端项目，以及本站（Astro）。'],
     ],
   },
   {
-    title: '技术栈',
+    title: '编辑器与工具',
     rows: [
-      ['主力语言', '<b>Go</b>。脚本用 Python，SQL 每天都在写。'],
-      ['数据库', '<b>PostgreSQL</b> 为主，缓存用 Redis，宽表放 ClickHouse。'],
-      ['消息', 'Kafka，偶尔用 NATS 做内部轻量通信。'],
-      ['可观测', 'Prometheus + Grafana + OpenTelemetry，日志集中到 Loki。'],
-      ['部署', 'Kubernetes（会用不会调，见 <a href="/about">关于</a> 页的自白）。'],
+      ['编辑器', '<b>VS Code</b> 写 Python / TS，<b>IntelliJ IDEA</b> 看老 Java 项目，Trae CN 用来做代码补全。'],
+      ['数据库', '<b>DataGrip</b> 查数据；小爪自己的数据是 JSON + 原子写，不引入数据库。'],
+      ['笔记', '<b>Typora</b> 写 Markdown  项目的 README 和文档都是这么来的。'],
+      ['抓包', 'Fiddler，调外部 API 时用。'],
+      ['版本控制', 'Git + GitHub，一个项目一个仓库。'],
     ],
   },
   {
-    title: '日常工具',
+    title: '打包与发布',
     rows: [
-      ['笔记', 'Obsidian，本地 Markdown，同步用 Git。'],
-      ['数据库 GUI', 'DBeaver 查数据，psql 干正事。'],
-      ['压测', 'wrk2 和 k6，看延迟分布比看 QPS 有意思。'],
-      ['阅读', 'Kindle + 纸质书混着来。'],
+      ['打包', '<b>PyInstaller</b>（onedir），再用自己写的 tkinter 向导做成单文件安装程序，约 120MB。'],
+      ['产物', '安装程序、绿色版 zip、未压缩运行目录三份，分别对应「发给别人」「塞 U 盘」「自己调试」。'],
+      ['自测', '<b>tools/ 下 107 个脚本</b>（其中 50 个是回归测试）。打包前先跑一遍，不通过就不出包。'],
+      ['调试方式', '比起打断点，我更常写一次性回归脚本  它能留住上次踩过的坑，下次自动帮你挡住。'],
     ],
   },
 ];
 ---
 <BaseLayout
   title="装备"
-  description="我用的硬件、编辑器配置和日常工具清单，后端工程师版本。"
+  description="颐安的开发环境：Python / PySide6 / Electron 技术栈，Windows 上的打包发布链路，以及 100 多个自测脚本。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
@@ -51,8 +51,8 @@ const groups = [
       <span class="eyebrow">装备</span>
       <h1>我在用什么</h1>
       <p class="lead">
-        同类人大概都爱看这类清单。这里只写我用了半年以上的东西，
-        短命尝试过的工具就不列了。
+        这份清单只写我用了半年以上的东西，短命尝试过的工具就不列了。
+        硬件那栏我没什么讲究  一台 Windows 11 机器跑完全部开发、打包和发布。
       </p>
     </div>
   </section>
@@ -81,7 +81,7 @@ const groups = [
         </span>
         <div>
           <b>工具只是工具</b><br />
-          这套清单我换过很多次，唯一没换的是「先量再改」的习惯。
+          这套环境我换过很多轮，唯一没换的是「先让用户能跑起来，再谈功能」。
           如果你也在折腾自己的环境，别花超过一天  剩下的时间用来写代码。
         </div>
       </div>
