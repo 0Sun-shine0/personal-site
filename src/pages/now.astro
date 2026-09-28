@@ -6,7 +6,7 @@ const updated = '2026-09-28';
 ---
 <BaseLayout
   title="现在"
-  description="颐安这个月在忙什么：小爪助手 v2.4、打包与安装流程、Agent 层自评审，以及今年想做到的事。"
+  description="颐安这个月在忙什么：学 AI Agent 的进展、小爪助手 v2.4、打包与发布、Agent 层自评审，以及今年想做到的事。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
@@ -22,6 +22,14 @@ const updated = '2026-09-28';
   <section class="section section--tight">
     <div class="wrap two-col">
       <div class="article">
+        <h2>在学 AI Agent</h2>
+        <ul>
+          <li><b>工具调用与权限</b>：怎么让模型安全地用工具  审批链、风险分级、fail closed 的边界在哪。</li>
+          <li><b>上下文与成本</b>：一次截图几万 token，怎么把每轮的固定开销压到最小（记忆和知识库都改成了检索）。</li>
+          <li><b>失败自纠</b>：让 Agent 自己发现做错了并重来，比让它一次做对更现实。</li>
+          <li>学习方式：<b>学一个概念就做成一个能跑的东西</b>。小爪助手就是这条路的产物，不是先学完再做。</li>
+        </ul>
+
         <h2>小爪助手：从「我能用」推向「别人也能用」</h2>
         <ul>
           <li>宠物周围的点击穿透：以前那个透明方块会挡住底下的桌面图标，现在按画面实际渲染出来的形状决定哪里能点  呼吸、眨眼、贴边侧躺都不会让点击位置跑偏。</li>
@@ -69,7 +77,8 @@ const updated = '2026-09-28';
         <div class="card">
           <span class="eyebrow">在做的项目</span>
           <div class="stack gap-sm" style="margin-top:.8rem">
-            <span class="mono faint">小爪助手 PawPet  v2.4.0</span>
+            <span class="mono faint">AI Agent 学习：工具调用 / 上下文 / 权限</span>
+            <span class="mono faint">小爪助手 PawPet  v2.4.0（成果产出）</span>
             <span class="mono faint">泛用户化：还剩自动更新 + 代码签名</span>
             <span class="mono faint">Agent 层：权限 / 成本 / 记忆</span>
           </div>

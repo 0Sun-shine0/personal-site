@@ -5,6 +5,8 @@
 
 站点主人：颐安  GitHub [@0Sun-shine0](https://github.com/0Sun-shine0)
 
+定位：**正在学 AI Agent**，方式「边做边学」 每学一个概念就做成一个能跑的工具，小爪助手是目前的成果产出。
+
 ## 站点内容从哪来
 
 内容不是占位符，全部对着真实仓库写的：
@@ -86,6 +88,53 @@ npm run preview    # 本地预览 dist/（默认 http://localhost:4321）
 > 注意：站点已去掉 X / Twitter 的社交链接。`BaseLayout.astro` 里保留的
 > `twitter:card` 是 OG 分享卡的 meta 协议名，不是社交账号，需要保留。
 
+## 推送到 GitHub
+
+这个项目的源码仓库是**私有的**：
+
+```
+https://github.com/0Sun-shine0/personal-site   (PRIVATE)
+```
+
+远程地址用的是**带用户名的形式**：
+
+```bash
+git remote -v
+# origin  https://0Sun-shine0@github.com/0Sun-shine0/personal-site.git
+```
+
+为什么多加这一段 `0Sun-shine0@`  因为这台机器的全局 `~/.gitconfig` 里有一条
+早先为了绕网络限制而加的改写规则：
+
+```ini
+[url "https://gitee.com/mirrors/"]
+    insteadOf = https://github.com/
+```
+
+它会把**所有** github 地址偷偷改写成 gitee 镜像（而那个镜像是 404 的）。
+带用户名的 URL 不以 `https://github.com/` 开头，因此不会被命中，能正常推到 GitHub。
+
+> 想彻底去掉这个隐患，可以删掉 `~/.gitconfig` 里那两行（`git config --global --unset-all url.https://gitee.com/mirrors/.insteadof`），
+> 然后 `git remote set-url origin https://github.com/0Sun-shine0/personal-site.git`。
+
+### 日常推送
+
+```bash
+git add -A
+git commit -m "你的改动"
+git push
+```
+
+如果提示要账号密码：密码处填 **Personal Access Token**（不是登录密码）。
+这台机器上已经有一个 `gho_` 开头的 token 存在 Windows 凭据管理器里（用户 `0Sun-shine0`）。
+
+## 部署
+
+源码私有，**部署出去的页面仍然是公开的**。可选：
+
+- **Cloudflare Pages / Vercel / Netlify**：直接连私有仓库（它们有权限读），构建命令 `npm run build`，输出目录 `dist`。
+- **GitHub Pages**：注意  免费账号**不能从私有仓库发布 Pages**（需要 Pro/Team）。
+  要么把仓库改成公开，要么改用上面几家。
 ## 上线前必须改的
 
 1. **站点地址**：`astro.config.mjs` 的 `site`（现在是 `https://0sun-shine0.github.io`）。
