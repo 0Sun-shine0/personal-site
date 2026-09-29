@@ -6,18 +6,18 @@
 export const site = {
   name: '颐安',
   initials: 'YA',
-  role: 'AI Agent 学习与实践',
-  tagline: '边学边做，做出来的东西都能跑',
-  headline: '我在接触 AI Agent，',
-  headlineAccent: '小爪助手是练手的地方。',
+  role: '在学 AI Agent',
+  tagline: '做出来的东西都真的能跑',
+  headline: '我在学 AI Agent，',
+  headlineAccent: '练手做了只桌面小宠物。',
   intro:
-    '在武汉。小爪助手是我主导做的桌面工具：待办、番茄钟、提醒、便签全部离线可用，AI 操作是能关掉的那一层。这个站放我做过的项目，和做的时候真正卡住我的问题。',
+    '它叫小爪，管着我的待办、番茄钟、提醒和便签：全部离线，数据只存本机，AI 操作可以关掉。这个站放我做过的项目和撞上的问题。',
   location: '湖北武汉',
   email: 'maaikk@126.com',
   qq: '920422927',
   wechat: 'M2XWYMM',
   github: 'https://github.com/0Sun-shine0',
-  status: '最近在收尾小爪助手的安装和自动更新',
+  status: '最近在给小爪助手补自动更新',
 };
 
 // 联系方式：页面上的复制按钮和「联系我」卡片都用这一份，改一处即可
@@ -36,9 +36,9 @@ export const navItems = [
 ];
 
 export const stats = [
-  { num: 'v2.4.0', label: '小爪助手当前版本' },
-  { num: '4.1 万行', label: 'Python（小爪助手）' },
-  { num: '107 个', label: '自测脚本' },
+  { num: '两周', label: '88 次提交' },
+  { num: '2.1 万行', label: '应用代码' },
+  { num: '1 个', label: '运行依赖' },
 ];
 
 // 首页跑马灯
