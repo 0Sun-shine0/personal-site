@@ -30,7 +30,7 @@ const allTags = [...new Set(posts.flatMap((p) => p.tags))];
         <span class="eyebrow">笔记</span>
         <h1>{posts.length} 篇，都是做东西时真撞上的问题</h1>
         <p class="lead">
-          不写「从零开始」系列。这里只有我做桌面工具和自动化时真撞上的问题：怎么定位、怎么改、改完之后还会不会再犯。
+          不想写成「从零开始」教程。这里只有我在折腾桌面工具和自动化时踩过的坑：当时是怎么找到问题的，怎么解决的，以及下次会不会又栽进去。
       </p>
       <div class="meta-row" style="margin-top:.6rem">
         {allTags.map((t) => <span class="tag">{t}</span>)}
