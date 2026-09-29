@@ -1,10 +1,21 @@
+# 构建产物与依赖
 node_modules/
 dist/
 .astro/
 .npm-cache/
+
+# 日志
 .install.out.log
 .install.err.log
-.DS_Store
+*.log
 
-# 独立克隆进来的其他项目（不属于本站源码）
+# 系统
+.DS_Store
+Thumbs.db
+
+# 外部归档与检出：可能含 .env 密钥，绝不入库
+*.zip
+*.rar
+*.7z
 T2Video/
+PawPet/
