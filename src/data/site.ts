@@ -6,7 +6,7 @@
 export const site = {
   name: '颐安',
   initials: 'YA',
-  role: '在学 AI Agent',
+  role: 'AI',
   tagline: '做出来的东西都真的能跑',
   headline: '在学 AI Agent，',
   headlineAccent: '在做桌面工具。',
