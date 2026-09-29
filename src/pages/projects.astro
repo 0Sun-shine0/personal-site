@@ -5,15 +5,15 @@ import { featured, projects, followedProjects, site } from '../data/site';
 ---
 <BaseLayout
   title="作品"
-  description="颐安学习 AI Agent 时做过的项目，重点是小爪助手，也记录桌面工具和视频实验中的返工过程。"
+  description="颐安做过的项目：小爪助手、T2Video-DCOT，以及几个桌面和自动化工具。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
       <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">作品</span></nav>
       <span class="eyebrow">作品</span>
-        <h1>学习 Agent 时做过的东西</h1>
+        <h1>我做过的东西</h1>
         <p class="lead">
-          这里放我真正写过、改过、返工过的项目。比起把功能列满，我更愿意留下当时为什么这么做，以及后来哪里证明做错了。
+          功能列表没那么重要。这里留下的主要是当时为什么这么选，以及后来发现错在哪。
       </p>
     </div>
   </section>
@@ -65,7 +65,7 @@ import { featured, projects, followedProjects, site } from '../data/site';
       <div class="section__head" data-reveal>
         <span class="eyebrow">其他作品</span>
         <h2>其他做过的项目</h2>
-        <p class="lead">有些项目不大，但各自留下了一点具体的经验。</p>
+        <p class="lead">三个不大的项目，各自留下了一点东西。</p>
       </div>
 
       <div class="stack gap-md">
@@ -84,7 +84,7 @@ import { featured, projects, followedProjects, site } from '../data/site';
               </ul>
               <div class="callout">
                 <span aria-hidden="true"><Icon name="spark" size={18} /></span>
-                <div><b>我留下的备注</b><br />{p.note}</div>
+                <div><b>做完之后发现</b><br />{p.note}</div>
               </div>
             </div>
 
@@ -102,9 +102,9 @@ import { featured, projects, followedProjects, site } from '../data/site';
   <section class="section section--tight">
     <div class="wrap">
       <div class="section__head" data-reveal>
-        <span class="eyebrow">关注过的项目</span>
-        <h2>以前关注过的项目（不是我的作品）</h2>
-        <p class="lead">下面这些 <strong>不是我的作品</strong>，是我学习阶段关注过、克隆或保存到账号里方便查阅的项目。署名和版权都属于原作者。</p>
+        <span class="eyebrow">别人写的</span>
+        <h2>关注过的开源项目</h2>
+        <p class="lead">这些 <strong>不是我的作品</strong> —— 是学习阶段关注过、fork 到自己账号里方便查的项目。署名和版权都在原作者那里。</p>
       </div>
 
       <div class="list" data-reveal>

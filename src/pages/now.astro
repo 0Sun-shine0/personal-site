@@ -6,16 +6,16 @@ const updated = '2026-09-28';
 ---
 <BaseLayout
   title="现在"
-  description="颐安最近在做的事：继续学习 AI Agent，整理小爪助手和一个旧的视频项目。"
+  description="颐安最近在做什么：小爪助手的收尾、T2Video 的重构，还有一堆没做完的基础工作。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
       <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">现在</span></nav>
       <span class="eyebrow">现在</span>
-        <h1>最近在忙什么</h1>
-        <p class="lead">
-          这一页不当简历，只记我这段时间学习和实践 Agent 时真的在做的事。常驻 {site.location}，最后更新：<span class="mono">{updated}</span>
-        </p>
+      <h1>最近在忙什么</h1>
+      <p class="lead">
+        记我最近真的在花时间的事。常驻 {site.location}，最后更新：<span class="mono">{updated}</span>
+      </p>
     </div>
   </section>
 
@@ -24,40 +24,38 @@ const updated = '2026-09-28';
       <div class="article">
         <h2>小爪助手</h2>
         <ul>
-          <li>继续把从项目里学到的 Agent 能力整理清楚：工具调用、屏幕识别、权限确认和上下文管理。</li>
-          <li>基础功能保持离线运行：待办、番茄钟、提醒和便签不依赖模型也能使用。</li>
           <li>宠物周围的点击区域改成跟着实际渲染结果走，透明的地方不再挡住桌面图标。</li>
-          <li>专注可以直接关联待办；删除支持撤销，数据文件被手动改坏时只处理出问题的那一项。</li>
-          <li>安装包、绿色版和卸载流程继续收尾，目标是发给一个不折腾电脑的朋友，他也能自己装好。</li>
+          <li>专注能关联待办了；删除可以撤销；数据文件被手改坏时只退回坏掉的那一项。</li>
+          <li>安装包、绿色版和卸载流程还在收尾。目标是发给一个不折腾电脑的朋友，他能自己装好。</li>
         </ul>
 
         <h2>T2Video 重构</h2>
         <ul>
-          <li>把 <b>2207 行的单文件</b>拆成 8 个模块，分镜、接口、拼接和验证各自有了位置，改一处不用再在两千行里跳。</li>
-          <li>补了 <b>230 个测试函数 / 294 个用例 / 303 条断言</b>，网络请求用伪造会话，跑测试不花 API 钱。</li>
-          <li>修掉 <b>8 个实际缺陷</b>，其中包括启动时误删系统临时目录文件的问题。</li>
-          <li>把原来只是“看起来像验证”的部分换成了 6 项可以实际计算的指标，也把依赖文件重新整理了一遍。</li>
+          <li>单文件拆成 8 个模块，分镜、接口、拼接、验证各归各位，改一处不用在两千行里跳。</li>
+          <li>补了 <b>230 个测试函数、303 条断言</b>，网络请求全走伪造会话，跑测试不花 API 钱。</li>
+          <li>「看起来像验证」的部分换成 6 项能算出来的指标，依赖文件也重新理了一遍。</li>
+          <li>修掉 <b>8 个</b>会影响实际使用的毛病，其中一个最离谱：启动时会把系统临时目录里超过 24 小时的文件删掉。</li>
         </ul>
 
-        <h2>最近补的基础工作</h2>
+        <h2>顺手做的基础工作</h2>
         <ul>
-          <li>把打包流程串起来：自测、打包、启动验证、安装测试和绿色版都由一条命令完成。</li>
-          <li>权限边界重新过了一遍：普通操作可以合并确认，但安装代码和执行高风险命令仍然单独询问。</li>
-          <li>继续补 Qt Quick 的布局测试和 PySide6 属性映射这类容易静默出错的地方。</li>
+          <li>打包串成一条命令：自测、打包、启动验证、安装测试、绿色版。</li>
+          <li>权限边界又过了一遍：普通操作能合并确认，装代码和跑高风险命令仍然单独问。</li>
+          <li>补 Qt Quick 的布局测试 —— 不给真实窗口量一次，那些数字都是假的。</li>
         </ul>
 
         <h2>接下来</h2>
         <ul>
           <li>把小爪发给一个完全不懂技术的朋友，看看他能不能不问我就装好并用起来。</li>
-          <li>补上自动更新和代码签名，再把安装过程交给真实用户试一次。</li>
-          <li>以后做别的工具，也继续保留“先能用，再加功能”的节奏。</li>
+          <li>补上自动更新和代码签名，再把安装包交给真实用户试一次。</li>
+          <li>别的工具也照这个节奏：先能用，再加功能。</li>
         </ul>
 
         <div class="callout">
           <span aria-hidden="true"><Icon name="clock" size={18} /></span>
           <div>
             <b>这一页是什么</b><br />
-            它不是完整的计划表，只是我最近确实在花时间的几件事。做完或改变方向之后，我会回来更新。
+            不是计划表。做完或者换方向了就回来改一次。
           </div>
         </div>
       </div>
@@ -69,18 +67,17 @@ const updated = '2026-09-28';
             <span class="mono faint">小爪助手 PawPet · v2.4.0</span>
             <span class="mono faint">T2Video · 重构与测试</span>
             <span class="mono faint">打包发布 · 自动更新与代码签名</span>
-            <span class="mono faint">Agent 学习 · 工具调用与权限</span>
           </div>
           <div class="btn-row" style="margin-top:1.1rem">
             <a class="btn btn--sm" href="/projects">看作品 <Icon name="arrow" cls="btn__icon" /></a>
           </div>
         </div>
         <div class="card">
-          <span class="eyebrow">最近在读</span>
+          <span class="eyebrow">最近在看</span>
           <div class="stack gap-sm" style="margin-top:.8rem">
             <span class="mono faint">Qt Quick 场景图与渲染管线</span>
             <span class="mono faint">Windows UI Automation 文档</span>
-            <span class="mono faint">别人的桌面工具怎么处理权限</span>
+            <span class="mono faint">别人怎么给桌面工具做权限</span>
           </div>
         </div>
       </aside>

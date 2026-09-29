@@ -22,15 +22,15 @@ const allTags = [...new Set(posts.flatMap((p) => p.tags))];
 ---
 <BaseLayout
   title="笔记"
-  description="颐安记录桌面开发、打包发布、数据可靠性和自动化工具时遇到的问题。"
+  description="颐安写桌面工具和自动化时踩过的坑：桌面开发、打包发布、数据可靠性。"
 >
   <section class="page-head">
     <div class="wrap stack gap-sm">
       <nav class="crumb" aria-label="面包屑"><a href="/">首页</a><span aria-hidden="true">/</span><span class="faint">文章</span></nav>
         <span class="eyebrow">笔记</span>
-        <h1>{posts.length} 篇做东西时留下的记录</h1>
+        <h1>{posts.length} 篇，都是做东西时真撞上的问题</h1>
         <p class="lead">
-          不专门写“从零开始”，主要记录我在做桌面工具和自动化时真的撞上的问题：怎么找到原因，怎么改，以及改完之后还会不会再犯。
+          不写「从零开始」系列。这里只有我做桌面工具和自动化时真撞上的问题：怎么定位、怎么改、改完之后还会不会再犯。
       </p>
       <div class="meta-row" style="margin-top:.6rem">
         {allTags.map((t) => <span class="tag">{t}</span>)}
