@@ -8,10 +8,10 @@ export const site = {
   initials: 'YA',
   role: '在学 AI Agent',
   tagline: '做出来的东西都真的能跑',
-  headline: '我在学 AI Agent，',
-  headlineAccent: '练手做了只桌面小宠物。',
+  headline: '在学 AI Agent，',
+  headlineAccent: '在做桌面工具。',
   intro:
-    '它叫小爪。平时帮我盯着待办、番茄钟、提醒和便签。所有数据都只留在本机，连 AI 功能不想用也能直接关掉。这个小站主要放我平时折腾过的项目和踩过的坑。',
+    '这里放我做过的项目和踩过的坑，偶尔也折腾点别的。',
   location: '湖北武汉',
   email: 'maaikk@126.com',
   qq: '920422927',
